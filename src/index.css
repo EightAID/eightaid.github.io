@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -21,9 +21,9 @@ body {
   min-width: 320px;
   color: #fff;
   background:
-    radial-gradient(circle at 20% 10%, rgba(252, 211, 77, 0.18), transparent 32%),
-    radial-gradient(circle at 90% 85%, rgba(249, 115, 22, 0.16), transparent 30%),
-    linear-gradient(145deg, #101218 0%, #181219 45%, #1c1b11 100%);
+    radial-gradient(circle at 20% 10%, rgba(239, 68, 68, 0.2), transparent 35%),
+    radial-gradient(circle at 88% 82%, rgba(127, 29, 29, 0.28), transparent 32%),
+    linear-gradient(150deg, #08090d 0%, #13080b 42%, #1b0b10 100%);
 }
 
 .site-shell {
@@ -37,9 +37,9 @@ body {
   inset: 0;
   z-index: -2;
   background-image: url('/assets/key-visual-main.png');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.38;
+  background-size: 140% auto;
+  background-position: center 28%;
+  opacity: 0.45;
 }
 
 .site-shell::after {
@@ -48,9 +48,16 @@ body {
   inset: 0;
   z-index: -1;
   backdrop-filter: blur(2px);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.74));
 }
 
 .hero-panel {
-  background: linear-gradient(155deg, rgba(37, 22, 18, 0.72), rgba(12, 11, 16, 0.72));
+  background: linear-gradient(155deg, rgba(48, 10, 16, 0.74), rgba(10, 10, 14, 0.74));
+}
+
+@media (max-width: 768px) {
+  .site-shell::before {
+    background-size: 210% auto;
+    background-position: center 22%;
+  }
 }
