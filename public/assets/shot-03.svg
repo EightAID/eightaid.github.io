@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="screenshot placeholder 3">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#102834"/>
+      <stop offset="100%" stop-color="#372114"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#g)"/>
+  <rect x="95" y="70" width="1090" height="580" rx="24" fill="#0f1118" fill-opacity="0.45" stroke="#f7d7a0" stroke-opacity="0.4"/>
+  <text x="640" y="330" text-anchor="middle" fill="#f7d7a0" font-size="64" font-family="sans-serif" font-weight="700">SCREENSHOT 03</text>
+  <text x="640" y="395" text-anchor="middle" fill="#fff3de" font-size="28" font-family="sans-serif">replace with your actual in-game capture</text>
+</svg>

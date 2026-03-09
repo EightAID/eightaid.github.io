@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-label="key visual placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b1025"/>
+      <stop offset="45%" stop-color="#2a1c16"/>
+      <stop offset="100%" stop-color="#101722"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="60%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#f4d28b" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#f4d28b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+  <path d="M0 860C190 790 360 940 560 890C770 835 900 640 1120 640C1330 640 1500 820 1920 740V1080H0Z" fill="#0b0e16" fill-opacity="0.82"/>
+  <path d="M160 930C390 860 560 980 760 920C980 853 1120 720 1310 720C1500 720 1680 850 1920 810" stroke="#f3b875" stroke-width="6" stroke-opacity="0.33" fill="none"/>
+  <text x="160" y="210" fill="#f7d8a3" font-size="86" font-family="sans-serif" font-weight="700" letter-spacing="8">KEY VISUAL</text>
+  <text x="165" y="290" fill="#f5e7c8" font-size="34" font-family="sans-serif" letter-spacing="4">replace this with your game artwork</text>
+</svg>
