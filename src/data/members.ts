@@ -3,22 +3,28 @@
   name: string
   role: string
   bio: string
+  image: string
+  xUrl: string
   skills: string[]
 }
 
 export const members: Member[] = [
   {
-    id: 'yui',
-    name: '結衣',
-    role: 'シナリオ / ディレクター',
-    bio: '企画、シナリオ、演出設計を担当。ゲーム全体の世界観と物語体験を設計しています。',
-    skills: ['Scenario', 'Direction', 'Worldbuilding'],
+    id: 'eightaid',
+    name: 'えいとえいど',
+    role: '企画 / プログラム',
+    bio: '代償少女の企画とプログラムを担当。カードバトルとADVの遊びをつなぐ体験設計を進めています。',
+    image: '/assets/member-eightaid.png',
+    xUrl: 'https://x.com/AIDunity',
+    skills: ['Planning', 'Programming', 'Game Design'],
   },
   {
-    id: 'kai',
-    name: 'カイ',
-    role: 'プログラム / グラフィック',
-    bio: 'Unity実装、UI、エフェクト、デバッグを担当。遊びの手触りと没入感の最適化を進めています。',
-    skills: ['Unity', 'Gameplay', 'UI/UX'],
+    id: 'beniimo',
+    name: '紅芋けんぴ',
+    role: 'イラスト / シナリオ',
+    bio: '代償少女のイラストとシナリオを担当。プレイヤーの選択が心に残る物語体験を設計しています。',
+    image: '/assets/member-beniimo.png',
+    xUrl: 'https://x.com/beniimo_game',
+    skills: ['Illustration', 'Scenario', 'Art Direction'],
   },
 ]
