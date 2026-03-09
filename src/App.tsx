@@ -50,14 +50,7 @@ function HomePage() {
             <p className="inline-flex rounded-full border border-red-200/50 bg-red-100/10 px-3 py-1 text-xs font-semibold tracking-[0.15em] text-red-100">
               INDIE GAME UNIT
             </p>
-            <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
-              <h1 className="text-4xl font-bold leading-tight text-red-50 md:text-6xl">代償プロジェクト</h1>
-              <img
-                src="/assets/16_9.png"
-                alt="代償プロジェクト ロゴ"
-                className="h-auto w-full max-w-[360px] rounded-xl border border-red-200/30 object-cover md:w-[320px]"
-              />
-            </div>
+            <h1 className="mt-4 text-4xl font-bold leading-tight text-red-50 md:text-6xl">代償プロジェクト</h1>
             <p className="mt-4 max-w-xl text-base text-stone-200/90 md:text-lg">圧倒的な絶望感と選択</p>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-stone-200/90 md:text-base">
               えいとえいどと紅芋けんぴによるインディーゲーム制作ユニット。2025年に「代償少女 unityroom版」を制作、
@@ -100,7 +93,7 @@ function HomePage() {
             <p className="text-xs font-semibold tracking-[0.18em] text-red-100/90">NOW DEVELOPING</p>
             <h2 className="mt-2 text-2xl font-semibold text-red-50">代償少女</h2>
             <p className="mt-3 text-sm leading-relaxed text-stone-200/90">カードバトルADV / 1人プレイ / Steam向け開発中</p>
-            <p className="mt-3 text-sm leading-relaxed text-stone-200/90">カードの代償は、少女"自身"。</p>
+            <p className="mt-3 text-sm leading-relaxed text-stone-200/90">カードの代償は、少女&quot;自身&quot;。</p>
           </div>
         </div>
       </section>
