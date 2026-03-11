@@ -4,9 +4,9 @@ import { members, type PastWork } from './data/members'
 
 const screenshots = [
   {
-    src: '/assets/screenshot-01.jpg',
+    src: '/assets/screenshot-03.png',
     title: '場面 1',
-    copy: '少女たちの会話劇と、選択の緊張感が同居する場面です。',
+    copy: 'カード演出と物語演出が交差する、ゲームプレイ中の画面です。',
   },
   {
     src: '/assets/screenshot-02.jpg',
@@ -14,9 +14,9 @@ const screenshots = [
     copy: '静かな画面構成で、不穏さと余韻を引き立てるカットです。',
   },
   {
-    src: '/assets/screenshot-03.png',
+    src: '/assets/screenshot-01.jpg',
     title: '場面 3',
-    copy: 'カード演出と物語演出が交差する、ゲームプレイ中の画面です。',
+    copy: '少女たちの会話劇と、選択の緊張感が同居する場面です。',
   },
 ]
 
@@ -224,11 +224,11 @@ function WorkCard({ work }: { work: PastWork }) {
         <div
           className={`absolute inset-0 ${
             work.image
-              ? 'bg-gradient-to-t from-black/75 via-black/25 to-black/10'
-              : 'bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.3),transparent_28%),radial-gradient(circle_at_85%_25%,rgba(255,255,255,0.18),transparent_18%),linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.45))]'
+              ? 'pointer-events-none bg-gradient-to-t from-black/75 via-black/25 to-black/10'
+              : 'pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.3),transparent_28%),radial-gradient(circle_at_85%_25%,rgba(255,255,255,0.18),transparent_18%),linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.45))]'
           }`}
         />
-        <div className="relative flex h-full items-end p-4">
+        <div className="pointer-events-none relative flex h-full items-end p-4">
           <div className="min-h-[4.75rem] w-full">
             <p className="text-xs font-medium text-white/80">{work.year}</p>
             <h3 className="mt-1.5 max-w-full text-lg font-black leading-snug text-white md:text-xl [overflow-wrap:anywhere]">
@@ -245,7 +245,7 @@ function WorkCard({ work }: { work: PastWork }) {
             rel="noreferrer"
             className="inline-flex w-full items-center justify-center rounded-full border border-red-100/30 px-4 py-2.5 text-sm font-semibold text-red-50 transition hover:bg-red-100/15"
           >
-            作品ページを見る
+            作品に飛ぶ
           </a>
         ) : null}
       </div>
