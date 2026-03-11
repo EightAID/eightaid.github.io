@@ -116,7 +116,7 @@ function Layout({ children }: { children: ReactNode }) {
               特設ページ
             </NavLink>
             <a
-              href="mailto:contact@daishou-project.example"
+              href="mailto:eightaidgames@gmail.com"
               className="rounded-full border border-red-100/30 px-4 py-2 text-red-100 transition hover:bg-red-100/15"
             >
               お問い合わせ
@@ -136,10 +136,10 @@ function Layout({ children }: { children: ReactNode }) {
           </div>
           <div className="flex flex-wrap gap-3">
             <a
-              href="mailto:contact@daishou-project.example"
+              href="mailto:eightaidgames@gmail.com"
               className="rounded-full bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-500"
             >
-              contact@daishou-project.example
+              eightaidgames@gmail.com
             </a>
             <a
               href="https://x.com/AIDunity"
