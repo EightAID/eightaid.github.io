@@ -51,13 +51,37 @@ body {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.74));
 }
 
-.hero-panel {
-  background: linear-gradient(155deg, rgba(48, 10, 16, 0.74), rgba(10, 10, 14, 0.74));
+.hero-copy {
+  position: relative;
+}
+
+.hero-copy::before {
+  content: '';
+  position: absolute;
+  inset: -2rem auto auto -1.5rem;
+  width: min(28rem, 75vw);
+  height: min(28rem, 75vw);
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.22) 0%, rgba(220, 38, 38, 0) 72%);
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.special-banner {
+  background:
+    linear-gradient(145deg, rgba(72, 12, 20, 0.84), rgba(12, 12, 18, 0.9)),
+    url('/assets/key-visual-main.png');
+  background-size: cover;
+  background-position: center;
 }
 
 @media (max-width: 768px) {
   .site-shell::before {
     background-size: 210% auto;
     background-position: center 22%;
+  }
+
+  .hero-copy::before {
+    inset: -1rem auto auto -1rem;
   }
 }
