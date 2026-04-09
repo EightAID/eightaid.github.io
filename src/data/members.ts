@@ -36,6 +36,12 @@ export const members: Member[] = [
       'Steam版に向けたゲームテンポの調整、カードごとの手触りの差分、演出面の磨き込みを進めています。',
     pastWorks: [
       {
+        title: '凋落のグランディディエ',
+        year: '2026',
+        link: 'https://unityroom.com/games/grandidier',
+        coverTone: 'rose',
+      },
+      {
         title: '代償少女',
         year: '2025',
         link: 'https://unityroom.com/games/lostedai',
@@ -113,6 +119,12 @@ export const members: Member[] = [
     currentFocus:
       '代償によって変化する少女たちの表情差分や、選択後の余韻が残る文章表現を強化しています。',
     pastWorks: [
+      {
+        title: '凋落のグランディディエ',
+        year: '2026',
+        link: 'https://unityroom.com/games/grandidier',
+        coverTone: 'rose',
+      },
       {
         title: '代償少女',
         year: '2025',
