@@ -39,6 +39,7 @@ export const members: Member[] = [
         title: '凋落のグランディディエ',
         year: '2026',
         link: 'https://unityroom.com/games/grandidier',
+        image: '/icons/u1w2603.gif',
         coverTone: 'rose',
       },
       {
@@ -123,6 +124,7 @@ export const members: Member[] = [
         title: '凋落のグランディディエ',
         year: '2026',
         link: 'https://unityroom.com/games/grandidier',
+        image: '/icons/u1w2603.gif',
         coverTone: 'rose',
       },
       {
