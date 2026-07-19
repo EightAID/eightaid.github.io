@@ -12,7 +12,8 @@
 - OGP、サイトマップ、robots.txtを設定
 - 更新ガイドを作成
 - 本番ビルド成功
-- GitHub Pagesへの公開確認中
+- GitHub Pagesへの公開完了
+- `https://daisho-project.com/` と各ページの応答確認済み
 
 ## 1. この計画の目的
 
