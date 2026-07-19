@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets'
+import { getSiteImage } from '../../lib/images'
+
+interface Shot {
+  image: string
+  alt: string
+  title: string
+  copy: string
+}
+
+interface Props { screenshots: Shot[] }
+const { screenshots } = Astro.props
+---
+
+<div class="gallery" data-gallery>
+  <div class="gallery-stage">
+    {screenshots.map((shot, index) => (
+      <figure class="gallery-slide" data-slide={index} hidden={index !== 0}>
+        <Image src={getSiteImage(shot.image)} alt={shot.alt} widths={[720, 1080, 1600, 1920]} sizes="(max-width: 900px) 100vw, 75vw" />
+        <figcaption>
+          <span>0{index + 1}</span>
+          <div>
+            <strong>{shot.title}</strong>
+            <p>{shot.copy}</p>
+          </div>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <div class="gallery-controls" aria-label="スクリーンショットを選択">
+    {screenshots.map((shot, index) => (
+      <button type="button" data-gallery-button={index} aria-pressed={index === 0 ? 'true' : 'false'}>
+        <span>0{index + 1}</span>
+        {shot.title}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((gallery) => {
+    const slides = gallery.querySelectorAll<HTMLElement>('[data-slide]')
+    const buttons = gallery.querySelectorAll<HTMLButtonElement>('[data-gallery-button]')
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selected = button.dataset.galleryButton
+        slides.forEach((slide) => { slide.hidden = slide.dataset.slide !== selected })
+        buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
+      })
+    })
+  })
+</script>

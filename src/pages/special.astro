@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets'
+import { getEntry } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ScreenshotGallery from '../components/sections/ScreenshotGallery.astro'
+import SectionHeading from '../components/ui/SectionHeading.astro'
+import { getSiteImage } from '../lib/images'
+
+const settings = await getEntry('settings', 'site')
+const special = await getEntry('special', 'daisho-shojo')
+const home = await getEntry('home', 'home')
+if (!settings || !special || !home) throw new Error('Required site content is missing')
+const heroImage = getSiteImage(special.data.heroImage)
+---
+
+<BaseLayout settings={settings.data} title="代償少女" description={special.data.lead}>
+  <section class="special-hero page-width">
+    <div class="special-hero-copy">
+      <p class="eyebrow">{special.data.eyebrow}</p>
+      <h1>{special.data.title}</h1>
+      <p class="special-catch">{special.data.catchphrase}</p>
+      <p class="special-lead">{special.data.lead}</p>
+      <a class="button primary" href={settings.data.links.steam} target="_blank" rel="noreferrer">Steamで見る ↗</a>
+    </div>
+    <div class="special-hero-image">
+      <Image src={heroImage} alt={special.data.heroAlt} widths={[600, 900, 1200]} sizes="(max-width: 900px) 100vw, 55vw" loading="eager" fetchpriority="high" />
+    </div>
+  </section>
+
+  <section class="facts-strip" aria-label="作品基本情報">
+    <dl class="page-width">
+      {special.data.facts.map((fact) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
+    </dl>
+  </section>
+
+  <section class="narrative-section page-width section-space">
+    <article>
+      <p class="eyebrow">01 / Story</p>
+      <h2>{special.data.storyTitle}</h2>
+      <p>{special.data.story}</p>
+    </article>
+    <article>
+      <p class="eyebrow">02 / System</p>
+      <h2>{special.data.systemTitle}</h2>
+      <p>{special.data.system}</p>
+    </article>
+  </section>
+
+  <section class="feature-section page-width section-space" aria-labelledby="feature-title">
+    <SectionHeading index="03" eyebrow="Core Experience" title="選択が、体験を変える。" />
+    <div class="feature-list large">
+      {special.data.features.map((feature) => (
+        <article class="feature-item">
+          <span>{feature.number}</span>
+          <h3>{feature.title}</h3>
+          <p>{feature.copy}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="gallery-section section-space" aria-labelledby="special-gallery-title">
+    <div class="page-width">
+      <SectionHeading index="04" eyebrow="Scenes" title="ゲーム画面" copy={home.data.galleryLead} />
+    </div>
+    <ScreenshotGallery screenshots={home.data.screenshots} />
+  </section>
+
+  <section class="final-cta page-width section-space">
+    <p class="eyebrow">Wishlist Now</p>
+    <h2>その選択の先を、<br />Steamで。</h2>
+    <div>
+      <a class="button primary" href={settings.data.links.steam} target="_blank" rel="noreferrer">Steamページへ ↗</a>
+      <a class="button quiet" href={settings.data.links.youtube} target="_blank" rel="noreferrer">PVを見る ↗</a>
+    </div>
+  </section>
+</BaseLayout>

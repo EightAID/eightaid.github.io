@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+type Settings = CollectionEntry<'settings'>['data']
+
+interface Props {
+  settings: Settings
+  currentPath: string
+}
+
+const { settings, currentPath } = Astro.props
+
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/'
+  return currentPath.startsWith(href)
+}
+---
+
+<header class="site-header">
+  <div class="header-inner page-width">
+    <a class="site-brand" href="/" aria-label={`${settings.name} トップページ`}>
+      <span class="site-brand-en">{settings.nameEn}</span>
+      <span class="site-brand-ja">{settings.name}</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      {settings.navigation.map((item, index) => (
+        <a class:list={['nav-link', { active: isActive(item.href) }]} href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+          <span class="nav-index">0{index + 1}</span>
+          {item.label}
+        </a>
+      ))}
+      <a class="nav-link nav-contact" href={`mailto:${settings.email}`}>Contact ↗</a>
+    </nav>
+
+    <details class="mobile-nav">
+      <summary>Menu</summary>
+      <nav aria-label="モバイルナビゲーション">
+        {settings.navigation.map((item) => (
+          <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+        ))}
+        <a href={`mailto:${settings.email}`}>お問い合わせ</a>
+      </nav>
+    </details>
+  </div>
+</header>

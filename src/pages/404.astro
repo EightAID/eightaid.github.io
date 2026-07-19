@@ -1,0 +1,16 @@
+---
+import { getEntry } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const settings = await getEntry('settings', 'site')
+if (!settings) throw new Error('Site settings are missing')
+---
+
+<BaseLayout settings={settings.data} title="ページが見つかりません">
+  <section class="not-found page-width">
+    <p class="eyebrow">404 / Not Found</p>
+    <h1>この選択肢の先には、<br />ページがありません。</h1>
+    <p>URLが変更されたか、入力が間違っている可能性があります。</p>
+    <a class="button primary" href="/">トップへ戻る →</a>
+  </section>
+</BaseLayout>

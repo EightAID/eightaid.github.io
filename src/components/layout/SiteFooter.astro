@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+type Settings = CollectionEntry<'settings'>['data']
+interface Props { settings: Settings }
+const { settings } = Astro.props
+---
+
+<footer class="site-footer">
+  <div class="footer-inner page-width">
+    <div class="footer-heading">
+      <p class="eyebrow">Contact / Collaboration</p>
+      <h2>{settings.footerLead}</h2>
+      <a class="text-link large" href={`mailto:${settings.email}`}>{settings.email} ↗</a>
+    </div>
+    <div class="footer-meta">
+      <nav aria-label="ソーシャルリンク">
+        <a href={settings.links.steam} target="_blank" rel="noreferrer">Steam ↗</a>
+        <a href={settings.links.x} target="_blank" rel="noreferrer">X ↗</a>
+        <a href={settings.links.youtube} target="_blank" rel="noreferrer">YouTube ↗</a>
+      </nav>
+      <p>{settings.copyright}</p>
+    </div>
+  </div>
+</footer>

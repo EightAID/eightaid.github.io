@@ -1,6 +1,10 @@
-# Portfolio Site
+# 代償プロジェクト 公式サイト
 
-React + TypeScript + Vite + Tailwind CSS で作った、GitHub Pages向けポートフォリオです。
+Astroで構築した「代償プロジェクト」の公式サイトです。
+
+- 公開URL: https://daisho-project.com/
+- コンテンツ更新: [CONTENT_GUIDE.md](./CONTENT_GUIDE.md)
+- 実装計画: [ASTRO_IMPLEMENTATION_PLAN.md](./ASTRO_IMPLEMENTATION_PLAN.md)
 
 ## 開発
 
@@ -9,15 +13,11 @@ npm install
 npm run dev
 ```
 
-## ビルド
+## 本番ビルド
 
 ```bash
 npm run build
+npm run preview
 ```
 
-## デプロイ (GitHub Pages)
-
-1. GitHub リポジトリの `Settings > Pages` を開く  
-2. `Source` を `GitHub Actions` に設定  
-3. `main` か `master` ブランチへ push  
-4. `.github/workflows/deploy.yml` が実行され、自動デプロイ
+`main` ブランチへ反映すると、GitHub ActionsからGitHub Pagesへ自動公開されます。

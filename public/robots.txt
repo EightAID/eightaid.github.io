@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daisho-project.com/sitemap-index.xml

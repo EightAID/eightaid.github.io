@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import { getSiteImage } from '../../lib/images'
+
+type Member = CollectionEntry<'members'>
+interface Props { member: Member; index: number }
+const { member, index } = Astro.props
+const portrait = getSiteImage(member.data.image)
+---
+
+<article class="member-card">
+  <a href={`/members/${member.id}/`}>
+    <div class="member-card-image">
+      <Image src={portrait} alt={member.data.imageAlt} widths={[320, 480, 640]} sizes="(max-width: 700px) 100vw, 40vw" style={`object-position:${member.data.imagePosition ?? 'center'}`} />
+      <span class="member-card-index">0{index + 1}</span>
+    </div>
+    <div class="member-card-copy">
+      <p>{member.data.role}</p>
+      <h3>{member.data.name}</h3>
+      <span>Profile →</span>
+    </div>
+  </a>
+</article>

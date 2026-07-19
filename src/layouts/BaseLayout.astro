@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import SiteHeader from '../components/layout/SiteHeader.astro'
+import SiteFooter from '../components/layout/SiteFooter.astro'
+import '../styles/global.css'
+
+type Settings = CollectionEntry<'settings'>['data']
+
+interface Props {
+  settings: Settings
+  title?: string
+  description?: string
+  image?: string
+}
+
+const { settings, title, description = settings.description, image = '/og.png' } = Astro.props
+const pageTitle = title ? `${title} | ${settings.name}` : settings.name
+const canonical = new URL(Astro.url.pathname, Astro.site)
+const socialImage = new URL(image, Astro.site)
+const currentPath = Astro.url.pathname
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0809" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/assets/app-icon-500.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content={settings.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">本文へ移動</a>
+    <div class="site-frame">
+      <SiteHeader settings={settings} currentPath={currentPath} />
+      <main id="main-content">
+        <slot />
+      </main>
+      <SiteFooter settings={settings} />
+    </div>
+  </body>
+</html>
