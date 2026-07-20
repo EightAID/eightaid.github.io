@@ -66,7 +66,9 @@ const currentPath = Astro.url.pathname
     <script is:inline define:vars={{ intelligenceReadings }}>
       (() => {
         const storageKey = 'daisho-sacrifice-state-v1'
-        const validEffects = new Set(['face', 'language', 'love', 'vision', 'color', 'intelligence'])
+        const validEffects = new Set(['face', 'name', 'birthday', 'language', 'love', 'vision', 'color', 'intelligence'])
+        const personalNames = ['えいとえいど', '紅芋けんぴ']
+        const birthdays = ['2月24日', '9月3日']
         const navigation = performance.getEntriesByType('navigation')[0]
         if (navigation?.type === 'reload') localStorage.removeItem(storageKey)
 
@@ -90,26 +92,56 @@ const currentPath = Astro.url.pathname
         const textEntries = []
         while (walker.nextNode()) {
           const node = walker.currentNode
-          textEntries.push({ node, original: node.textContent ?? '', inArticles: Boolean(node.parentElement?.closest('#articles')) })
+          textEntries.push({
+            node,
+            original: node.textContent ?? '',
+            inArticles: Boolean(node.parentElement?.closest('#articles')),
+            birthdaySensitive: Boolean(node.parentElement?.closest('[data-birthday-loss]')),
+          })
         }
+        const privateTerms = [...personalNames, ...birthdays]
+        const attributeEntries = [...document.querySelectorAll('[aria-label], [title], [alt], meta[content]')].flatMap((element) =>
+          ['aria-label', 'title', 'alt', 'content']
+            .filter((attribute) => element.hasAttribute(attribute))
+            .map((attribute) => ({ element, attribute, original: element.getAttribute(attribute) ?? '' }))
+            .filter((entry) => privateTerms.some((term) => entry.original.includes(term))),
+        )
+        const originalDocumentTitle = document.title
 
         const shiftUnicode = (text) => Array.from(text, (character) => {
-          if (/\s/u.test(character)) return character
+          if (/\s/u.test(character) || character === '？') return character
           const codePoint = character.codePointAt(0)
           return codePoint === undefined ? character : String.fromCodePoint(codePoint + 10)
         }).join('')
+        const redactPersonalDetails = (text) => {
+          let redacted = text
+          if (activeEffects.has('name')) personalNames.forEach((name) => { redacted = redacted.replaceAll(name, '？'.repeat(name.length)) })
+          if (activeEffects.has('birthday')) birthdays.forEach((birthday) => { redacted = redacted.replaceAll(birthday, '？'.repeat(birthday.length)) })
+          return redacted
+        }
         const formatText = (text) => {
-          const reading = activeEffects.has('intelligence') ? (intelligenceReadings[text] ?? text) : text
-          return activeEffects.has('language') ? shiftUnicode(reading) : reading
+          const redactedOriginal = redactPersonalDetails(text)
+          const base = redactedOriginal !== text
+            ? redactedOriginal
+            : activeEffects.has('intelligence') ? (intelligenceReadings[text] ?? text) : text
+          return activeEffects.has('language') ? shiftUnicode(base) : base
         }
         const applyTextEffects = () => {
           const losesIntelligence = activeEffects.has('intelligence')
           const losesLanguage = activeEffects.has('language')
           textEntries.forEach((entry) => {
             const reading = losesIntelligence && !entry.inArticles ? intelligenceReadings[entry.original] : undefined
-            const base = reading ?? entry.original
+            const birthdayRedacted = activeEffects.has('birthday') && entry.birthdaySensitive
+              ? entry.original.replace(/\S/gu, '？')
+              : entry.original
+            const redactedOriginal = redactPersonalDetails(birthdayRedacted)
+            const base = redactedOriginal !== entry.original ? redactedOriginal : redactPersonalDetails(reading ?? entry.original)
             entry.node.textContent = losesLanguage ? shiftUnicode(base) : base
           })
+          attributeEntries.forEach((entry) => {
+            entry.element.setAttribute(entry.attribute, redactPersonalDetails(entry.original))
+          })
+          document.title = redactPersonalDetails(originalDocumentTitle)
         }
 
         const loveLoss = document.querySelector('[data-love-loss]')

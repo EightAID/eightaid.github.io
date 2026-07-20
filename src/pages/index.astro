@@ -20,6 +20,8 @@ if (!settings || !home) throw new Error('Required site content is missing')
 const featuredProduct = products.find((product) => product.id === home.data.featuredProduct) ?? products[0]
 const sacrificeCards = [
   { id: 'face', name: '顔', image: '/assets/cards/face-card.png' },
+  { id: 'name', name: '名前', image: '/assets/cards/name-card.png' },
+  { id: 'birthday', name: '誕生日', image: '/assets/cards/birthday-card.png' },
   { id: 'language', name: '言語', image: '/assets/cards/language-card.png' },
   { id: 'love', name: '愛', image: '/assets/cards/love-card.png' },
   { id: 'vision', name: '視覚', image: '/assets/cards/vision-card.png' },
@@ -101,7 +103,7 @@ const sacrificeCards = [
     <ol class="timeline">
       {history.map((event) => (
         <li class:list={[event.data.compact && 'compact', event.data.yearMarker && 'year-marker', (event.data.yearMarker || isFourDigitYear(event.data.date)) && 'year']}>
-          <time>{event.data.date}</time>
+          <time data-birthday-loss>{event.data.date}</time>
           {!event.data.yearMarker && <div><h3>{event.data.title}</h3>{event.data.description && <p>{event.data.description}</p>}{event.data.link && <a href={event.data.link} target="_blank" rel="noreferrer">詳しく見る ↗</a>}</div>}
         </li>
       ))}

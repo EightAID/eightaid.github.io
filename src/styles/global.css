@@ -304,6 +304,11 @@ button, summary { font: inherit; }
 .profile-copy h1 { margin: 0; font-family: var(--serif); font-size: clamp(3.5rem, 7vw, 7rem); font-weight: 500; letter-spacing: -.06em; line-height: 1; }
 .profile-role { color: var(--crimson-bright); font-size: .76rem; letter-spacing: .12em; }
 .profile-bio { max-width: 34rem; margin-top: 2rem; color: var(--paper-muted); }
+.profile-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 34rem; margin: 2rem 0 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-sm); background: rgba(255,255,255,.035); }
+.profile-details > div { min-width: 0; padding: 1rem 1.15rem; border-right: 1px solid var(--line); }
+.profile-details > div:last-child { border-right: 0; }
+.profile-details dt { color: var(--paper-muted); font-size: .58rem; font-weight: 800; letter-spacing: .12em; }
+.profile-details dd { margin: .25rem 0 0; font-family: var(--serif); font-size: clamp(.95rem, 1.6vw, 1.2rem); white-space: nowrap; }
 .profile-links { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
 .works-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 .work-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); transition: transform .25s, border-color .25s; }
@@ -390,8 +395,14 @@ button, summary { font: inherit; }
   .product-card-copy { grid-template-columns: 1fr; }
   .round-arrow { display: none; }
   .product-summary { font-size: .84rem; }
+  .member-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
   .member-card > a { grid-template-columns: 1fr; min-height: 0; }
-  .member-card-image { min-height: 22rem; }
+  .member-card-image { min-height: 0; aspect-ratio: 1; }
+  .member-card-copy { padding: 1rem .85rem; }
+  .member-card-copy > p:first-child { font-size: .55rem; letter-spacing: .05em; }
+  .member-card-copy h3 { margin: .25rem 0 .7rem; font-size: clamp(1rem, 5vw, 1.5rem); }
+  .member-card-bio { display: none; }
+  .member-card-copy span { font-size: .62rem; }
   .article-rail .article-card, .social-link-card { flex-basis: min(86vw, 31rem); }
   .article-filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .35rem; scrollbar-width: none; }
   .article-filters::-webkit-scrollbar { display: none; }
@@ -407,6 +418,10 @@ button, summary { font: inherit; }
   .sacrifice-card { flex-basis: min(68vw, 14rem); width: min(68vw, 14rem); }
   .product-hero-image, .profile-image { min-height: 60vh; }
   .product-hero-copy, .profile-copy { min-height: 0; padding: 2.3rem 1.3rem 3rem; }
+  .profile-details { grid-template-columns: 1fr; width: 100%; }
+  .profile-details > div { display: grid; grid-template-columns: 5rem 1fr; align-items: baseline; padding: .8rem 1rem; border-right: 0; border-bottom: 1px solid var(--line); }
+  .profile-details > div:last-child { border-bottom: 0; }
+  .profile-details dd { margin: 0; }
   .product-hero-copy h1 { font-size: clamp(3.5rem, 18vw, 6rem); }
   .facts-strip dl { grid-template-columns: 1fr; }
   .gallery { width: 100%; }

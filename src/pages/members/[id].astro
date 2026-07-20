@@ -36,6 +36,20 @@ const works = (worksCatalog?.data.items ?? [])
       <h1 data-fit-text>{member.data.name}</h1>
       <p class="profile-role">{member.data.role}</p>
       <p class="profile-bio">{member.data.bio}</p>
+      <dl class="profile-details" aria-label="プロフィール情報">
+        <div>
+          <dt>誕生日</dt>
+          <dd data-birthday>{member.data.birthday}</dd>
+        </div>
+        <div>
+          <dt>血液型</dt>
+          <dd>{member.data.bloodType}</dd>
+        </div>
+        <div>
+          <dt>星座</dt>
+          <dd>{member.data.zodiac}</dd>
+        </div>
+      </dl>
       <div class="profile-links">
         <a class="button primary" href={member.data.xUrl} target="_blank" rel="noreferrer">Xを見る ↗</a>
         {member.data.portfolioUrl && <a class="button quiet" href={member.data.portfolioUrl} target="_blank" rel="noreferrer">Portfolio ↗</a>}
