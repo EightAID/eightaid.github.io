@@ -215,15 +215,12 @@ button, summary { font: inherit; }
 .sacrifice-card:focus-visible .sacrifice-card-face { outline: 3px solid #fff; outline-offset: 6px; }
 .sacrifice-card-art { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .sacrifice-card-name { position: absolute; top: 2.2%; right: 8%; left: 8%; z-index: 3; display: flex; height: 11.5%; align-items: center; justify-content: center; color: #fff; font-family: var(--sans); font-size: 2rem; font-size: 12.5cqi; font-weight: 800; letter-spacing: .04em; line-height: 1; text-shadow: 0 .12em .2em rgba(0,0,0,.48); pointer-events: none; }
-.sacrifice-prompt { display: block; margin-top: 1rem; color: var(--paper-muted); font-size: .68rem; font-weight: 800; letter-spacing: .08em; transition: color .2s; }
-.sacrifice-card:hover .sacrifice-prompt { color: var(--paper); }
 .sacrifice-flame { position: absolute; right: -12%; bottom: -20%; left: -12%; z-index: 5; height: 38%; opacity: 0; background: radial-gradient(ellipse at 12% 100%, #ffd9d9 0 8%, #ec183d 9% 18%, transparent 35%), radial-gradient(ellipse at 34% 100%, #fff0ed 0 7%, #b80028 10% 26%, transparent 39%), radial-gradient(ellipse at 58% 100%, #ffd0d7 0 8%, #e00032 10% 25%, transparent 40%), radial-gradient(ellipse at 82% 100%, #ffe0e0 0 7%, #8f001f 11% 27%, transparent 41%); filter: blur(2px) drop-shadow(0 -10px 14px rgba(225,0,48,.9)); pointer-events: none; }
 .sacrifice-flame::before, .sacrifice-flame::after { position: absolute; width: .35rem; height: .35rem; border-radius: 50%; background: #ff637d; box-shadow: 2rem -2.4rem 0 #c70032, 4.7rem -1.1rem 0 #ff395b, 7rem -3rem 0 #940023, 10rem -1.8rem 0 #ff7188, 13rem -2.6rem 0 #bd002d; content: ''; }
 .sacrifice-flame::after { left: 1.3rem; transform: translateY(-2.2rem) scale(.65); }
 .sacrifice-card.is-burning { pointer-events: none; }
 .sacrifice-card.is-burning .sacrifice-card-face { animation: sacrifice-burn-away 1.25s cubic-bezier(.55,.02,.72,.42) forwards; }
 .sacrifice-card.is-burning .sacrifice-flame { animation: sacrifice-flame-rise 1.25s ease-in forwards; opacity: 1; }
-.sacrifice-card.is-burning .sacrifice-prompt { opacity: 0; }
 .sacrifice-result { position: relative; z-index: 1; min-height: 1.8rem; margin: .5rem 0 0; color: var(--crimson-bright); font-family: var(--serif); font-size: clamp(1rem, 2vw, 1.35rem); }
 .sacrifice-playground.is-complete .sacrifice-carousel { min-height: 4rem; }
 
@@ -408,7 +405,6 @@ button, summary { font: inherit; }
   .sacrifice-card-viewport { padding-inline: 2.4rem; }
   .sacrifice-cards { gap: .8rem; }
   .sacrifice-card { flex-basis: min(68vw, 14rem); width: min(68vw, 14rem); }
-  .sacrifice-prompt { font-size: .56rem; letter-spacing: 0; }
   .product-hero-image, .profile-image { min-height: 60vh; }
   .product-hero-copy, .profile-copy { min-height: 0; padding: 2.3rem 1.3rem 3rem; }
   .product-hero-copy h1 { font-size: clamp(3.5rem, 18vw, 6rem); }
