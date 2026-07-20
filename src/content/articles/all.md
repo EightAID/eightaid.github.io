@@ -238,4 +238,32 @@ items:
     category: ニュース
     groups: [紅芋けんぴ参加]
     image: https://www.gamespark.jp/imgs/ogp_f/1090673.png
+  - title: "ゲムダン史上最大規模を迎えた「東京ゲームダンジョン12」レポート。少女の“大切なもの”をコストにするカードバトルADV『代償少女』など注目作品を紹介"
+    source: ゲームメーカーズ
+    publishedAt: "2026-05-14T00:00:00+09:00"
+    url: https://gamemakers.jp/article/2026_05_14_136788/
+    category: 取材レポート
+    groups: [代償プロジェクト, えいとえいど参加, 紅芋けんぴ参加]
+    image: https://gamemakers.jp/cms/wp-content/uploads/2026/05/6f0f3b249f9f71c904d0afbdab270a79.jpg
+  - title: 東京ゲームショウ2025 出展ラインナップ
+    source: 講談社ゲームクリエイターズラボ
+    publishedAt: "2025-09-08T19:59:00+09:00"
+    url: https://creatorslab.kodansha.co.jp/topics/4121/
+    category: 公式発表
+    groups: [代償プロジェクト, えいとえいど参加, 紅芋けんぴ参加]
+    image: https://assets.creatorslab.kodansha.co.jp/wp-content/uploads/2025/09/GL%E3%82%B5%E3%83%A0%E3%83%8D%E3%82%A4%E3%83%AB_s-1-1.jpg
+  - title: "『違う冬のぼくら』ところにょり氏×『都市伝説解体センター』墓場文庫の座談会などを特集する冊子「ゲームラボマガジンVol.2」がTGS2025で配布決定。TGS2024で大好評につき1万部がすぐに無くなったの続刊"
+    source: 電ファミニコゲーマー
+    publishedAt: "2025-09-16T12:00:21+09:00"
+    url: https://news.denfaminicogamer.jp/news/250916a
+    category: ニュース
+    groups: [代償プロジェクト, えいとえいど参加, 紅芋けんぴ参加]
+    image: https://news.denfaminicogamer.jp/wp-content/uploads/2025/09/img11ss.png
+  - title: "SFマガジン2025年12月号にゲームイベント所感記事連載の第7回が掲載"
+    source: 模範的工作員同志／X
+    publishedAt: "2025-10-25T11:40:00+09:00"
+    url: https://x.com/KgPravda/status/1981913604653027382?s=20
+    category: 掲載情報
+    groups: [代償プロジェクト, えいとえいど参加, 紅芋けんぴ参加]
+    image: https://pbs.twimg.com/media/G3_ncy8WIAATDHn.jpg?name=orig
 ---
