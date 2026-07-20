@@ -5,7 +5,7 @@ eyebrow: Current Product / Card Battle ADV
 catchphrase: カードのコストは、少女"自身"
 lead: カードを使うたび、少女は大切なものを失っていく。戦うための選択と、その先に残る物語を描く喪失系カードバトルADVです。
 summary: 少女の大切なものを代償にする、喪失系カードバトルADV。カードはプレイヤーが操作する「少女自身」であり、使うカードに応じて効果・UI・物語などが大きく変化していきます。
-genre: カードバトルADV
+genre: 喪失系カードバトルADV
 platform: Steam
 status: 制作中
 storyTitle: 怪しげな森で目覚めた少女

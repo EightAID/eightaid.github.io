@@ -25,7 +25,11 @@ body {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
-  background: radial-gradient(circle at 78% 5%, rgba(154, 22, 47, .22), transparent 36rem), linear-gradient(180deg, #0b090a, #100b0e 55%, #090708);
+  background:
+    radial-gradient(circle at 78% 5%, rgba(154, 22, 47, .18), transparent 36rem),
+    linear-gradient(180deg, rgba(11, 9, 10, .9), rgba(16, 11, 14, .94) 55%, rgba(9, 7, 8, .97)),
+    url('/代償少女キービジュアル.png') center top / cover fixed no-repeat,
+    var(--ink);
   color: var(--paper);
   font-family: var(--sans);
   font-size: 16px;
@@ -62,7 +66,7 @@ button, summary { font: inherit; }
 .site-header { position: sticky; top: 0; z-index: 40; padding: .75rem 0; background: linear-gradient(rgba(11,9,10,.92), rgba(11,9,10,.66)); backdrop-filter: blur(18px); }
 .header-inner { display: flex; min-height: 4.25rem; align-items: center; justify-content: space-between; gap: 2rem; padding-inline: 1.15rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(23,17,20,.68); box-shadow: 0 16px 50px rgba(0,0,0,.2); }
 .site-brand { display: flex; align-items: center; gap: .8rem; line-height: 1; }
-.site-brand img { width: 8.5rem; height: auto; filter: invert(1); }
+.site-brand img { width: 8.5rem; height: auto; }
 .site-brand-en { color: var(--paper-muted); font-size: .54rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
 .desktop-nav { display: flex; align-items: center; gap: .2rem; }
 .nav-link { display: flex; align-items: center; gap: .45rem; padding: .72rem .85rem; border-radius: 999px; color: var(--paper-muted); font-size: .7rem; letter-spacing: .06em; transition: color .2s, background .2s; }
@@ -83,7 +87,7 @@ button, summary { font: inherit; }
 .circle-hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,6,7,.92) 0%, rgba(8,6,7,.68) 38%, rgba(8,6,7,.18) 75%), linear-gradient(0deg, rgba(8,6,7,.75), transparent 42%); }
 .circle-hero-copy { position: relative; z-index: 1; display: flex; min-height: inherit; flex-direction: column; justify-content: center; align-items: flex-start; padding-block: clamp(4rem, 9vw, 8rem); }
 .circle-hero-copy h1 { width: min(46rem, 68vw); margin: .5rem 0 0; }
-.circle-hero-copy h1 img { width: 100%; height: auto; filter: invert(1); }
+.circle-hero-copy h1 img { width: 100%; height: auto; }
 .hero-catch { margin: 2rem 0 0; font-family: var(--serif); font-size: clamp(1.35rem, 2.5vw, 2.4rem); letter-spacing: .04em; }
 .hero-introduction { max-width: 36rem; margin: 1rem 0 0; color: #ddd4d6; font-size: .94rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
@@ -269,7 +273,7 @@ button, summary { font: inherit; }
 .feature-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .feature-item { min-height: 18rem; padding: 2rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
 .feature-item > span { color: var(--crimson-bright); font-family: var(--serif); font-size: 1.5rem; }
-.feature-item h3 { margin: 3rem 0 1rem; font-family: var(--serif); font-size: clamp(1.4rem, 2vw, 2rem); font-weight: 500; }
+.feature-item h3 { margin: .75rem 0 .65rem; font-family: var(--serif); font-size: clamp(1.4rem, 2vw, 2rem); font-weight: 500; }
 .feature-item p { margin: 0; color: var(--paper-muted); font-size: .86rem; }
 .gallery-section { overflow: hidden; }
 .gallery { width: min(calc(100% - (var(--gutter) * 2)), var(--page)); margin-inline: auto; }
@@ -352,6 +356,7 @@ button, summary { font: inherit; }
   .circle-hero-overlay { background: linear-gradient(0deg, rgba(8,6,7,.96), rgba(8,6,7,.24) 82%); }
   .circle-hero-copy { justify-content: flex-end; }
   .circle-hero-copy h1 { width: min(40rem, 88vw); }
+  body { background-attachment: scroll; }
   .product-hero, .profile-hero { grid-template-columns: 1fr; min-height: 0; }
   .product-hero-image, .profile-image { grid-row: 1; min-height: 65vh; }
   .product-hero-copy, .profile-copy { grid-row: 2; min-height: 32rem; }

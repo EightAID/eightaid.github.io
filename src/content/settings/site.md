@@ -1,7 +1,7 @@
 ---
 name: 代償プロジェクト
 nameEn: Daishou Project
-description: インディーゲーム制作ユニット「代償プロジェクト」の公式サイト。カードバトルADV『代償少女』を制作しています。
+description: インディーゲーム制作ユニット「代償プロジェクト」の公式サイト。喪失系カードバトルADV『代償少女』を制作しています。
 email: eightaidgames@gmail.com
 navigation:
   - label: トップ
