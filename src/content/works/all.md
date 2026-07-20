@@ -1,5 +1,10 @@
 ---
 items:
+  - title: 奏律のリチア
+    year: 2026
+    link: https://unityroom.com/games/sacrifice
+    image: /icons/奏律のリチア.gif
+    members: [eightaid]
   - title: やさぐれ性格診断プラス
     year: 2026
     link: https://store.steampowered.com/app/4893620/_/
