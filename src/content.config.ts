@@ -139,6 +139,7 @@ const works = defineCollection({
     items: z.array(z.object({
       title: z.string(),
       year: z.number(),
+      publishedAt: z.coerce.date().optional(),
       link: linkSchema,
       image: z.string(),
       members: z.array(z.string()),

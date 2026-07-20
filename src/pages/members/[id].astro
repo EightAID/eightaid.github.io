@@ -19,7 +19,11 @@ const portrait = getSiteImage(member.data.image)
 const worksCatalog = await getEntry('works', 'all')
 const works = (worksCatalog?.data.items ?? [])
   .filter((work) => work.members.includes(member.id))
-  .sort((a, b) => b.year - a.year)
+  .sort((a, b) => {
+    const yearDifference = b.year - a.year
+    if (yearDifference !== 0) return yearDifference
+    return (b.publishedAt?.getTime() ?? 0) - (a.publishedAt?.getTime() ?? 0)
+  })
 ---
 
 <BaseLayout settings={settings.data} title={member.data.name} description={member.data.bio} imageAlt={`${member.data.name} | 代償プロジェクト`}>

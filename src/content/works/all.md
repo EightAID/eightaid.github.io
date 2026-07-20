@@ -40,36 +40,42 @@ items:
     link: https://unityroom.com/games/ionemuizugoddo
     image: /icons/イオネム.png
     members: [beniimo]
-  - title: 代償少女
-    year: 2025
-    link: https://unityroom.com/games/lostedai
-    image: /icons/代償少女.png
-    members: [eightaid, beniimo]
   - title: シロワ様の寿命遊戯
     year: 2025
+    publishedAt: 2025-12-28
     link: https://unityroom.com/games/sirowasamaage
     image: /icons/シロワ様.png
     members: [eightaid, beniimo]
-  - title: 嘘がニガテな暮多さん
-    year: 2025
-    link: https://unityroom.com/games/kuretasan
-    image: /icons/嘘がニガテな暮多さん.png
-    members: [eightaid]
-  - title: フェルと化け物の森
-    year: 2025
-    link: https://unityroom.com/games/rydie
-    image: /icons/フェルと化け物の森.png
-    members: [eightaid]
   - title: 悪魔の心臓のつくりかた
     year: 2025
+    publishedAt: 2025-08-15
     link: https://unityroom.com/games/how_to_make_devils_heart
     image: /icons/悪魔の心臓の作り方.png
     members: [beniimo]
+  - title: フェルと化け物の森
+    year: 2025
+    publishedAt: 2025-08-10
+    link: https://unityroom.com/games/rydie
+    image: /icons/フェルと化け物の森.png
+    members: [eightaid]
+  - title: 嘘がニガテな暮多さん
+    year: 2025
+    publishedAt: 2025-07-28
+    link: https://unityroom.com/games/kuretasan
+    image: /icons/嘘がニガテな暮多さん.png
+    members: [eightaid]
   - title: ミオソティスに祝福を
     year: 2025
+    publishedAt: 2025-07-26
     link: https://unityroom.com/games/myosotis
     image: /icons/ミオソティス.png
     members: [beniimo]
+  - title: 代償少女
+    year: 2025
+    publishedAt: 2025-04-20
+    link: https://unityroom.com/games/lostedai
+    image: /icons/代償少女.png
+    members: [eightaid, beniimo]
   - title: ぴよぴよ-卵を"かえす"落ち物パズル-
     year: 2024
     link: https://unityroom.com/games/hiyocome
