@@ -10,7 +10,7 @@
 | トップのコピー、ロゴ、背景画像 | `src/content/home/home.md` |
 | 作品の詳細、基本情報、スクリーンショット | `src/content/products/*.md` |
 | メンバー情報 | `src/content/members/*.md` |
-| 過去作品 | `src/content/works/all.md` |
+| 過去作品 | `src/content/works/sources.json` |
 | 掲載記事・お知らせ | `src/content/articles/all.md` |
 | 活動履歴 | `src/content/history/*.md` |
 
@@ -74,7 +74,7 @@ src/assets/images/screenshots/
 
 例: `new-member.md` は `/members/new-member/` になります。
 
-個別プロフィールには短い紹介と過去作品一覧が表示されます。参加作品は `src/content/works/all.md` の `members` で紐づけます。
+個別プロフィールには短い紹介と過去作品一覧が表示されます。参加作品は `src/content/works/sources.json` の `members` で紐づけます。
 
 ## 掲載記事を追加する
 
@@ -125,22 +125,23 @@ order: 6
 
 ## 過去作品を追加する
 
-`src/content/works/all.md` の `items` の末尾へ、以下の5項目を追加します。
+`src/content/works/sources.json` の `items` の末尾へ、URL・識別名・参加メンバーを追加します。
 
-```yaml
-- title: 作品名
-  year: 2026
-  link: https://example.com/
-  image: /icons/example.png
-  members: [eightaid]
+```json
+{
+  "id": "new-game",
+  "url": "https://unityroom.com/games/new-game",
+  "members": ["eightaid"]
+}
 ```
 
-- `members` には参加メンバーのファイル名を指定
-- 複数人なら `[eightaid, beniimo]`
-- 公開年の新しい順へ自動で並ぶため、`order` は不要
-- 同じ年の作品は `all.md` に書かれている順に表示
+- `id` は半角英数字とハイフンで重複しない名前を指定
+- `members` には参加メンバーのファイル名を指定。複数人なら `["eightaid", "beniimo"]`
+- 追加後に `npm run sync:works` を実行
+- 作品名・投稿日・アイコンを作品ページから取得し、`src/content/works/all.json` と `public/generated/works` を自動更新
+- 公開年と投稿日が新しい順に自動表示されるため、手動の並べ替えは不要
 
-小さな作品アイコンは `public/icons` に置き、`/icons/ファイル名` と指定できます。
+unityroom以外など取得できない項目がある場合は、`title`、`publishedAt`、`year`、`image` を追加して上書きできます。`all.json` は自動生成ファイルなので直接編集しません。
 
 ## ローカルで確認する
 
