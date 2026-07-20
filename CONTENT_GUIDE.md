@@ -10,7 +10,7 @@
 | トップのコピー、ロゴ、背景画像 | `src/content/home/home.md` |
 | 作品の詳細、基本情報、スクリーンショット | `src/content/products/*.md` |
 | メンバー情報 | `src/content/members/*.md` |
-| 過去作品 | `src/content/works/all.md` |
+| 過去作品 | `src/content/works/all.json` |
 | 掲載記事・お知らせ | `src/content/articles/all.md` |
 | 活動履歴 | `src/content/history/*.md` |
 
@@ -74,7 +74,7 @@ src/assets/images/screenshots/
 
 例: `new-member.md` は `/members/new-member/` になります。
 
-個別プロフィールには短い紹介と過去作品一覧が表示されます。参加作品は `src/content/works/all.md` の `members` で紐づけます。
+個別プロフィールには短い紹介と過去作品一覧が表示されます。参加作品は `src/content/works/all.json` の `members` で紐づけます。
 
 ## 掲載記事を追加する
 
@@ -125,15 +125,17 @@ order: 6
 
 ## 過去作品を追加する
 
-`src/content/works/all.md` の `items` の末尾へ作品を追加します。
+`src/content/works/all.json` の `items` の末尾へ作品を追加します。
 
-```yaml
-- title: 作品名
-  year: 2026
-  publishedAt: 2026-07-20
-  link: https://unityroom.com/games/new-game
-  image: https://作品ページのOG画像URL
-  members: [eightaid]
+```json
+{
+  "title": "作品名",
+  "year": 2026,
+  "publishedAt": "2026-07-20",
+  "link": "https://unityroom.com/games/new-game",
+  "image": "https://作品ページのOG画像URL",
+  "members": ["eightaid"]
+}
 ```
 
 - `members` には参加メンバーのファイル名を指定。複数人なら `["eightaid", "beniimo"]`

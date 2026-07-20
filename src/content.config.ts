@@ -134,7 +134,7 @@ const history = defineCollection({
 })
 
 const works = defineCollection({
-  loader: glob({ pattern: 'all.md', base: './src/content/works' }),
+  loader: glob({ pattern: 'all.json', base: './src/content/works' }),
   schema: z.object({
     items: z.array(z.object({
       title: z.string(),
