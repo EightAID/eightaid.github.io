@@ -107,7 +107,10 @@ src/assets/images/screenshots/
   description: 開発中の気づきや制作記録を掲載しています。
   url: https://note.com/アカウント名
   image: https://example.com/channel-image.jpg
+  members: [えいとえいど]
 ```
+
+`members` は `[えいとえいど]` または `[紅芋けんぴ]` を指定します。両方に表示するリンクは `[えいとえいど, 紅芋けんぴ]` と記載します。
 
 ## 活動履歴を追加する
 

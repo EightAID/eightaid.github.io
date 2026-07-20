@@ -24,6 +24,7 @@ const settings = defineCollection({
       description: z.string(),
       url: linkSchema,
       image: z.string(),
+      members: z.array(z.enum(['えいとえいど', '紅芋けんぴ'])).min(1),
     })),
     footerLead: z.string(),
     copyright: z.string(),
