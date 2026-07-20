@@ -174,8 +174,17 @@ const currentPath = Astro.url.pathname
           getState() {
             return [...activeEffects]
           },
+          reset() {
+            activeEffects.clear()
+            localStorage.removeItem(storageKey)
+            applyState()
+            notify()
+          },
           formatText,
         }
+        document.querySelector('[data-sacrifice-reset]')?.addEventListener('click', () => {
+          window.daishoSacrifice.reset()
+        })
         window.addEventListener('storage', (event) => {
           if (event.key !== storageKey) return
           activeEffects.clear()
