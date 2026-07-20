@@ -86,16 +86,6 @@ const featuredProduct = products.find((product) => product.id === home.data.feat
         </div>
       </div>
     </div>
-    <div class="social-feed" data-social-members="えいとえいど">
-      <div class="social-feed-heading">
-        <p class="eyebrow">Latest Posts</p>
-        <h3>えいとえいどの最新ポスト</h3>
-        <p>Xで発信している最新情報を掲載しています。</p>
-      </div>
-      <div class="x-timeline-shell">
-        <a class="twitter-timeline" data-theme="dark" data-height="560" data-chrome="noheader nofooter transparent" data-dnt="true" href="https://x.com/AIDunity">えいとえいどの最新ポストをXで見る ↗</a>
-      </div>
-    </div>
   </section>
 
   <section id="history" class="history-section page-width section-space" aria-labelledby="history-title">
@@ -158,10 +148,9 @@ const featuredProduct = products.find((product) => product.id === home.data.feat
     articleCarousel?.dispatchEvent(new Event('carousel-refresh'))
   }))
 
-  const socialSection = document.querySelector<HTMLElement>('#socials')
-  const socialCarousel = socialSection?.querySelector<HTMLElement>('.social-carousel')
+  const socialCarousel = document.querySelector<HTMLElement>('.social-carousel')
   const socialFilterButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-social-filter]')]
-  const socialItems = [...(socialSection?.querySelectorAll<HTMLElement>('[data-social-members]') ?? [])]
+  const socialItems = [...(socialCarousel?.querySelectorAll<HTMLElement>('[data-social-members]') ?? [])]
   socialFilterButtons.forEach((button) => button.addEventListener('click', () => {
     const selected = button.dataset.socialFilter ?? 'all'
     socialFilterButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
@@ -172,5 +161,3 @@ const featuredProduct = products.find((product) => product.id === home.data.feat
     socialCarousel?.dispatchEvent(new Event('carousel-refresh'))
   }))
 </script>
-
-<script is:inline async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
