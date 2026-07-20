@@ -1,7 +1,7 @@
 ---
 name: 紅芋けんぴ
 role: イラスト・シナリオ
-bio: 『代償少女』のイラストとシナリオを担当。
+bio: 『代償少女』のイラストとシナリオを担当。寿司とオムライスが好き。
 image: members/beniimo.png
 imageAlt: 紅芋けんぴのプロフィール画像
 xUrl: https://x.com/beniimo_game

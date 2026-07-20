@@ -16,9 +16,10 @@ const { member } = Astro.props
 const settings = await getEntry('settings', 'site')
 if (!settings) throw new Error('Site settings are missing')
 const portrait = getSiteImage(member.data.image)
-const works = (await getCollection('works'))
-  .filter((work) => work.data.members.includes(member.id))
-  .sort((a, b) => a.data.order - b.data.order)
+const worksCatalog = await getEntry('works', 'all')
+const works = (worksCatalog?.data.items ?? [])
+  .filter((work) => work.members.includes(member.id))
+  .sort((a, b) => b.year - a.year)
 ---
 
 <BaseLayout settings={settings.data} title={member.data.name} description={member.data.bio} imageAlt={`${member.data.name} | 代償プロジェクト`}>

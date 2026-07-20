@@ -23,6 +23,7 @@ const settings = defineCollection({
       label: z.string(),
       description: z.string(),
       url: linkSchema,
+      image: z.string(),
     })),
     footerLead: z.string(),
     copyright: z.string(),
@@ -104,16 +105,18 @@ const members = defineCollection({
 })
 
 const articles = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
+  loader: glob({ pattern: 'all.md', base: './src/content/articles' }),
   schema: z.object({
-    title: z.string(),
-    source: z.string(),
-    publishedAt: z.coerce.date(),
-    url: linkSchema,
-    category: z.string(),
-    featured: z.boolean().default(false),
-    draft: z.boolean().default(false),
-    order: z.number(),
+    items: z.array(z.object({
+      title: z.string(),
+      source: z.string(),
+      publishedAt: z.coerce.date(),
+      url: linkSchema,
+      category: z.string(),
+      groups: z.array(z.enum(['代償プロジェクト', 'えいとえいど参加', '紅芋けんぴ参加'])).min(1),
+      image: linkSchema,
+      draft: z.boolean().default(false),
+    })),
   }),
 })
 
@@ -122,22 +125,24 @@ const history = defineCollection({
   schema: z.object({
     date: z.string(),
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     link: linkSchema.optional(),
+    compact: z.boolean().default(false),
+    yearMarker: z.boolean().default(false),
     order: z.number(),
   }),
 })
 
 const works = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/works' }),
+  loader: glob({ pattern: 'all.md', base: './src/content/works' }),
   schema: z.object({
-    title: z.string(),
-    year: z.number(),
-    link: linkSchema,
-    image: z.string(),
-    imageAlt: z.string(),
-    members: z.array(z.string()),
-    order: z.number(),
+    items: z.array(z.object({
+      title: z.string(),
+      year: z.number(),
+      link: linkSchema,
+      image: z.string(),
+      members: z.array(z.string()),
+    })),
   }),
 })
 

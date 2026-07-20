@@ -10,8 +10,8 @@
 | トップのコピー、ロゴ、背景画像 | `src/content/home/home.md` |
 | 作品の詳細、基本情報、スクリーンショット | `src/content/products/*.md` |
 | メンバー情報 | `src/content/members/*.md` |
-| 過去作品 | `src/content/works/*.md` |
-| 掲載記事・お知らせ | `src/content/articles/*.md` |
+| 過去作品 | `src/content/works/all.md` |
+| 掲載記事・お知らせ | `src/content/articles/all.md` |
 | 活動履歴 | `src/content/history/*.md` |
 
 `---` で囲まれた範囲だけを編集します。行頭の空白は項目のまとまりを示すため、削除しないでください。
@@ -74,24 +74,28 @@ src/assets/images/screenshots/
 
 例: `new-member.md` は `/members/new-member/` になります。
 
-個別プロフィールには短い紹介と過去作品一覧が表示されます。参加作品は `src/content/works/*.md` の `members` で紐づけます。
+個別プロフィールには短い紹介と過去作品一覧が表示されます。参加作品は `src/content/works/all.md` の `members` で紐づけます。
 
 ## 掲載記事を追加する
 
-`src/content/articles/_template.md` を複製し、先頭の `_` を使わないファイル名に変更します。
+`src/content/articles/all.md` の `items` の末尾へ記事ブロックを追加します。
 
 ```yaml
-title: 記事タイトル
-source: 掲載媒体名
-publishedAt: 2026-07-20
-url: https://example.com/article
-category: Interview
-featured: true
-draft: false
-order: 1
+- title: 記事タイトル
+  source: 掲載媒体名
+  publishedAt: 2026-07-20
+  url: https://example.com/article
+  category: Interview
+  groups: [代償プロジェクト]
+  image: https://example.com/article-image.jpg
+  draft: false
 ```
 
-掲載記事には画像を使いません。準備中の記事は `draft: true` にすると表示されません。
+`image` には記事ページの見出し画像またはOG画像のURLを入力します。準備中の記事は `draft: true` にすると表示されません。
+
+`groups` は `[代償プロジェクト]`、`[えいとえいど参加]`、`[紅芋けんぴ参加]` から指定します。複数に表示したい場合は `[えいとえいど参加, 紅芋けんぴ参加]` のように並べます。
+
+一覧は `publishedAt` の新しい順に自動で並ぶため、`order` は不要です。同じ公開日時の記事は `all.md` に書かれている順に表示されます。
 
 ## 他SNS・外部サイトを追加する
 
@@ -102,6 +106,7 @@ order: 1
   label: 制作記録
   description: 開発中の気づきや制作記録を掲載しています。
   url: https://note.com/アカウント名
+  image: https://example.com/channel-image.jpg
 ```
 
 ## 活動履歴を追加する
@@ -120,23 +125,20 @@ order: 6
 
 ## 過去作品を追加する
 
-`src/content/works` にMarkdownを追加します。
+`src/content/works/all.md` の `items` の末尾へ、以下の5項目を追加します。
 
 ```yaml
----
-title: 作品名
-year: 2026
-link: https://example.com/
-image: /icons/example.png
-imageAlt: 『作品名』のアイコン
-members: [eightaid]
-order: 17
----
+- title: 作品名
+  year: 2026
+  link: https://example.com/
+  image: /icons/example.png
+  members: [eightaid]
 ```
 
 - `members` には参加メンバーのファイル名を指定
 - 複数人なら `[eightaid, beniimo]`
-- `order` の小さい作品から先に表示
+- 公開年の新しい順へ自動で並ぶため、`order` は不要
+- 同じ年の作品は `all.md` に書かれている順に表示
 
 小さな作品アイコンは `public/icons` に置き、`/icons/ファイル名` と指定できます。
 

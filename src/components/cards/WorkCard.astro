@@ -1,19 +1,17 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-
-type Work = CollectionEntry<'works'>
+interface Work { title: string; year: number; link: string; image: string; members: string[] }
 interface Props { work: Work }
 const { work } = Astro.props
 ---
 
 <article class="work-card">
-  <a href={work.data.link} target="_blank" rel="noreferrer" aria-label={`${work.data.title}を見る（新しいタブ）`}>
+  <a href={work.link} target="_blank" rel="noreferrer" aria-label={`${work.title}を見る（新しいタブ）`}>
     <div class="work-image-wrap">
-      <img src={work.data.image} alt={work.data.imageAlt} width="512" height="512" loading="lazy" decoding="async" />
+      <img src={work.image} alt={`『${work.title}』の画像`} width="512" height="512" loading="lazy" decoding="async" />
     </div>
     <div class="work-copy">
-      <time datetime={String(work.data.year)}>{work.data.year}</time>
-      <h3>{work.data.title}</h3>
+      <time datetime={String(work.year)}>{work.year}</time>
+      <h3>{work.title}</h3>
       <span aria-hidden="true">↗</span>
     </div>
   </a>

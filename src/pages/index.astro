@@ -10,8 +10,12 @@ const settings = await getEntry('settings', 'site')
 const home = await getEntry('home', 'home')
 const members = (await getCollection('members')).sort((a, b) => a.data.order - b.data.order)
 const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order)
-const articles = (await getCollection('articles')).filter((article) => !article.data.draft).sort((a, b) => a.data.order - b.data.order)
+const articlesCatalog = await getEntry('articles', 'all')
+const articles = (articlesCatalog?.data.items ?? [])
+  .filter((article) => !article.draft)
+  .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())
 const history = (await getCollection('history')).sort((a, b) => a.data.order - b.data.order)
+const isFourDigitYear = (value: string) => /^\d{4}$/.test(value)
 if (!settings || !home) throw new Error('Required site content is missing')
 const featuredProduct = products.find((product) => product.id === home.data.featuredProduct) ?? products[0]
 ---
@@ -44,20 +48,98 @@ const featuredProduct = products.find((product) => product.id === home.data.feat
 
   <section id="socials" class="socials-section page-width section-space" aria-labelledby="socials-title">
     <header class="compact-section-heading"><p class="eyebrow">Other Channels</p><h2 id="socials-title">他SNS・外部サイト</h2><p>{home.data.socialsLead}</p></header>
-    <div class="social-link-grid">
-      {settings.data.socialLinks.map((social) => <a class="social-link-card" href={social.url} target="_blank" rel="noreferrer"><span class="social-mark" aria-hidden="true">{social.name.slice(0, 1)}</span><div><p>{social.label}</p><h3>{social.name}</h3><p>{social.description}</p></div><span class="round-arrow" aria-hidden="true">↗</span></a>)}
+    <div class="social-carousel" data-horizontal-carousel>
+      <div class="carousel-toolbar"><div class="carousel-controls"><button type="button" data-carousel-prev aria-label="前の外部サイトへ" aria-controls="social-link-rail">←</button><button type="button" data-carousel-next aria-label="次の外部サイトへ" aria-controls="social-link-rail">→</button></div></div>
+      <div id="social-link-rail" class="carousel-viewport" data-carousel-viewport tabindex="0" aria-label="他SNS・外部サイト。左右にスライドできます">
+        <div class="social-link-grid" data-carousel-track>
+          {settings.data.socialLinks.map((social) => <a class="social-link-card" href={social.url} target="_blank" rel="noreferrer"><div class="social-link-media"><img src={social.image} alt={`${social.name}の見出し画像`} loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><div class="social-link-copy"><p>{social.label}</p><h3>{social.name}</h3><p>{social.description}</p><span>サイトを見る ↗</span></div></a>)}
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="articles" class="articles-section section-space" aria-labelledby="articles-title">
     <header class="compact-section-heading page-width"><p class="eyebrow">Articles & News</p><h2 id="articles-title">掲載記事・お知らせ</h2><p>{home.data.articlesLead}</p></header>
-    {articles.length > 0 ? <div class="article-rail page-width">{articles.map((article) => <ArticleCard article={article} />)}</div> : <div class="article-empty page-width"><p class="eyebrow">Coming Soon</p><h3>掲載情報を準備しています。</h3><p>記事名・掲載元・URLを追加すると、ここに一覧表示されます。</p></div>}
+    {articles.length > 0 ? (
+      <>
+      <nav class="article-filters page-width" aria-label="掲載記事の絞り込み">
+        <button type="button" data-article-filter="all" aria-pressed="true">すべて</button>
+        <button type="button" data-article-filter="代償プロジェクト" aria-pressed="false">代償プロジェクト</button>
+        <button type="button" data-article-filter="えいとえいど参加" aria-pressed="false">えいとえいど参加</button>
+        <button type="button" data-article-filter="紅芋けんぴ参加" aria-pressed="false">紅芋けんぴ参加</button>
+      </nav>
+      <div class="article-carousel page-width" data-article-carousel>
+        <div class="carousel-toolbar">
+          <div class="carousel-controls">
+            <button type="button" data-carousel-prev aria-label="前の記事へ" aria-controls="article-rail">←</button>
+            <button type="button" data-carousel-next aria-label="次の記事へ" aria-controls="article-rail">→</button>
+          </div>
+        </div>
+        <div id="article-rail" class="carousel-viewport" data-carousel-viewport tabindex="0" aria-label="掲載記事。左右にスライドできます">
+          <div class="article-rail" data-carousel-track>{articles.map((article) => <ArticleCard article={article} />)}</div>
+        </div>
+      </div>
+      </>
+    ) : <div class="article-empty page-width"><p class="eyebrow">Coming Soon</p><h3>掲載情報を準備しています。</h3><p>記事名・掲載元・URLを追加すると、ここに一覧表示されます。</p></div>}
   </section>
 
   <section id="history" class="history-section page-width section-space" aria-labelledby="history-title">
     <header class="compact-section-heading"><p class="eyebrow">History</p><h2 id="history-title">これまでの歩み</h2><p>{home.data.historyLead}</p></header>
     <ol class="timeline">
-      {history.map((event) => <li><time>{event.data.date}</time><div><h3>{event.data.title}</h3><p>{event.data.description}</p>{event.data.link && <a href={event.data.link} target="_blank" rel="noreferrer">詳しく見る ↗</a>}</div></li>)}
+      {history.map((event) => (
+        <li class:list={[event.data.compact && 'compact', event.data.yearMarker && 'year-marker', (event.data.yearMarker || isFourDigitYear(event.data.date)) && 'year']}>
+          <time>{event.data.date}</time>
+          {!event.data.yearMarker && <div><h3>{event.data.title}</h3>{event.data.description && <p>{event.data.description}</p>}{event.data.link && <a href={event.data.link} target="_blank" rel="noreferrer">詳しく見る ↗</a>}</div>}
+        </li>
+      ))}
     </ol>
   </section>
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-horizontal-carousel], [data-article-carousel]').forEach((carousel) => {
+    const viewport = carousel.querySelector<HTMLElement>('[data-carousel-viewport]')
+    const track = viewport?.querySelector<HTMLElement>('[data-carousel-track]')
+    const cards = [...(track?.children ?? [])] as HTMLElement[]
+    const previous = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]')
+    const next = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]')
+    if (!viewport || !track || !previous || !next || cards.length === 0) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const step = () => (cards.find((card) => !card.hidden)?.getBoundingClientRect().width ?? viewport.clientWidth) + Number.parseFloat(getComputedStyle(track).gap || '0')
+    const update = () => {
+      const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth)
+      previous.disabled = viewport.scrollLeft <= 4
+      next.disabled = viewport.scrollLeft >= maxScroll - 4
+    }
+    const move = (direction: number) => viewport.scrollBy({ left: step() * direction, behavior: reducedMotion.matches ? 'auto' : 'smooth' })
+
+    previous.addEventListener('click', () => move(-1))
+    next.addEventListener('click', () => move(1))
+    viewport.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+      event.preventDefault()
+      move(event.key === 'ArrowLeft' ? -1 : 1)
+    })
+    viewport.addEventListener('scroll', update, { passive: true })
+    carousel.addEventListener('carousel-refresh', () => {
+      viewport.scrollLeft = 0
+      update()
+    })
+    new ResizeObserver(update).observe(viewport)
+    update()
+  })
+
+  const articleCarousel = document.querySelector<HTMLElement>('[data-article-carousel]')
+  const filterButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-article-filter]')]
+  const articleCards = [...(articleCarousel?.querySelectorAll<HTMLElement>('[data-article-groups]') ?? [])]
+  filterButtons.forEach((button) => button.addEventListener('click', () => {
+    const selected = button.dataset.articleFilter ?? 'all'
+    filterButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
+    articleCards.forEach((card) => {
+      const groups = card.dataset.articleGroups?.split('|') ?? []
+      card.hidden = selected !== 'all' && !groups.includes(selected)
+    })
+    articleCarousel?.dispatchEvent(new Event('carousel-refresh'))
+  }))
+</script>

@@ -1,12 +1,18 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-type Article = CollectionEntry<'articles'>
+interface Article { title: string; source: string; publishedAt: Date; url: string; category: string; groups: string[]; image: string; draft: boolean }
 interface Props { article: Article }
 const { article } = Astro.props
-const date = article.data.publishedAt.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' })
+const date = article.publishedAt.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' })
 ---
-<article class="article-card">
-  <a href={article.data.url} target="_blank" rel="noreferrer">
-    <div class="article-copy"><p><span>{article.data.category}</span><time datetime={article.data.publishedAt.toISOString()}>{date}</time></p><h3>{article.data.title}</h3><span>{article.data.source} ↗</span></div>
+<article class="article-card" data-article-groups={article.groups.join('|')}>
+  <a href={article.url} target="_blank" rel="noreferrer">
+    <div class="article-media">
+      <img src={article.image} alt={`${article.title}の見出し画像`} loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+    </div>
+    <div class="article-copy">
+      <p><span>{article.category}</span><time datetime={article.publishedAt.toISOString()}>{date}</time></p>
+      <h3>{article.title}</h3>
+      <span class="article-source">{article.source} ↗</span>
+    </div>
   </a>
 </article>
