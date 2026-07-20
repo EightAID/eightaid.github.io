@@ -14,26 +14,18 @@ const { screenshots } = Astro.props
 ---
 
 <div class="gallery" data-gallery>
-  <div class="gallery-stage">
+  <div class="gallery-stage" tabindex="0" aria-label="ゲーム画面。左右の矢印キーでも切り替えられます">
     {screenshots.map((shot, index) => (
-      <figure class="gallery-slide" data-slide={index} hidden={index !== 0}>
+      <figure class="gallery-slide" data-slide={index} hidden={index !== 0} aria-hidden={index !== 0 ? 'true' : 'false'}>
         <Image src={getSiteImage(shot.image)} alt={shot.alt} widths={[720, 1080, 1600, 1920]} sizes="(max-width: 900px) 100vw, 75vw" />
-        <figcaption>
-          <span>0{index + 1}</span>
-          <div>
-            <strong>{shot.title}</strong>
-            <p>{shot.copy}</p>
-          </div>
-        </figcaption>
       </figure>
     ))}
+    <button class="gallery-arrow gallery-arrow-prev" type="button" data-gallery-prev aria-label="前のゲーム画面へ">←</button>
+    <button class="gallery-arrow gallery-arrow-next" type="button" data-gallery-next aria-label="次のゲーム画面へ">→</button>
   </div>
-  <div class="gallery-controls" aria-label="スクリーンショットを選択">
-    {screenshots.map((shot, index) => (
-      <button type="button" data-gallery-button={index} aria-pressed={index === 0 ? 'true' : 'false'}>
-        <span>0{index + 1}</span>
-        {shot.title}
-      </button>
+  <div class="gallery-dots" aria-label="ゲーム画面を選択">
+    {screenshots.map((_, index) => (
+      <button type="button" data-gallery-dot={index} aria-label={`${index + 1}枚目を表示`} aria-pressed={index === 0 ? 'true' : 'false'}></button>
     ))}
   </div>
 </div>
@@ -41,14 +33,29 @@ const { screenshots } = Astro.props
 <script>
   document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((gallery) => {
     const slides = gallery.querySelectorAll<HTMLElement>('[data-slide]')
-    const buttons = gallery.querySelectorAll<HTMLButtonElement>('[data-gallery-button]')
+    const dots = gallery.querySelectorAll<HTMLButtonElement>('[data-gallery-dot]')
+    const stage = gallery.querySelector<HTMLElement>('.gallery-stage')
+    const previous = gallery.querySelector<HTMLButtonElement>('[data-gallery-prev]')
+    const next = gallery.querySelector<HTMLButtonElement>('[data-gallery-next]')
+    let current = 0
 
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const selected = button.dataset.galleryButton
-        slides.forEach((slide) => { slide.hidden = slide.dataset.slide !== selected })
-        buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
+    const select = (index: number) => {
+      current = (index + slides.length) % slides.length
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === current
+        slide.hidden = !active
+        slide.setAttribute('aria-hidden', String(!active))
       })
+      dots.forEach((dot, dotIndex) => dot.setAttribute('aria-pressed', String(dotIndex === current)))
+    }
+
+    previous?.addEventListener('click', () => select(current - 1))
+    next?.addEventListener('click', () => select(current + 1))
+    dots.forEach((dot, index) => dot.addEventListener('click', () => select(index)))
+    stage?.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+      event.preventDefault()
+      select(current + (event.key === 'ArrowLeft' ? -1 : 1))
     })
   })
 </script>

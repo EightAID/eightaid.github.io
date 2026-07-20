@@ -11,7 +11,7 @@ const { product, featured = false } = Astro.props
       <span class="status-pill">{product.data.status}</span>
     </div>
     <div class="product-card-copy">
-      <div><p>{product.data.genre} / {product.data.platform}</p><h3>{product.data.title}</h3><p class="product-summary">{product.data.summary}</p></div>
+      <div><p>{product.data.genre} / {product.data.platform}</p><h3 data-fit-text>{product.data.title}</h3><p class="product-summary">{product.data.summary}</p></div>
       <span class="round-arrow" aria-hidden="true">→</span>
     </div>
   </a>

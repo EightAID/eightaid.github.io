@@ -54,5 +54,38 @@ const currentPath = Astro.url.pathname
       </main>
       <SiteFooter settings={settings} />
     </div>
+    <script>
+      const fitText = (element: HTMLElement) => {
+        element.style.removeProperty('font-size')
+
+        const maximum = Number.parseFloat(getComputedStyle(element).fontSize)
+        const minimum = Number.parseFloat(element.dataset.fitMin ?? '16')
+        let low = minimum
+        let high = maximum
+
+        if (element.scrollWidth <= element.clientWidth) return
+
+        while (high - low > 0.25) {
+          const size = (low + high) / 2
+          element.style.fontSize = `${size}px`
+          if (element.scrollWidth <= element.clientWidth) low = size
+          else high = size
+        }
+
+        element.style.fontSize = `${low}px`
+      }
+
+      const fittedText = [...document.querySelectorAll<HTMLElement>('[data-fit-text]')]
+      const fitAllText = () => fittedText.forEach(fitText)
+      let resizeFrame = 0
+      const queueTextFit = () => {
+        cancelAnimationFrame(resizeFrame)
+        resizeFrame = requestAnimationFrame(fitAllText)
+      }
+
+      document.fonts.ready.then(fitAllText)
+      window.addEventListener('resize', queueTextFit, { passive: true })
+      fitAllText()
+    </script>
   </body>
 </html>
