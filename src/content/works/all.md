@@ -1,0 +1,108 @@
+---
+items:
+  - title: やさぐれ性格診断プラス
+    year: 2026
+    publishedAt: 2026-07-09
+    link: https://store.steampowered.com/app/4893620/_/
+    image: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4893620/faebb83e04bcc8933f2d73f094566c324bfb1f7c/capsule_616x353.jpg?t=1783555806
+    members: [eightaid]
+  - title: 奏律のリチア
+    year: 2026
+    publishedAt: 2026-05-17
+    link: https://unityroom.com/games/sacrifice
+    image: https://os-worker.unityroom.com/unityroom_production/icon/298339/icon_20260517_170230.gif?h=1779004950
+    members: [eightaid]
+  - title: 凋落のグランディディエ
+    year: 2026
+    publishedAt: 2026-03-22
+    link: https://unityroom.com/games/grandidier
+    image: https://os-worker.unityroom.com/unityroom_production/icon/276615/icon_20260322_203245.gif?h=1774179165
+    members: [eightaid, beniimo]
+  - title: やさぐれ性格診断
+    year: 2026
+    publishedAt: 2026-01-12
+    link: https://unityroom.com/games/zettaisou
+    image: https://os-worker.unityroom.com/unityroom_production/icon/252455/icon_20260112_195658.gif?h=1768215418
+    members: [eightaid]
+  - title: すくって救え！人魚すくい
+    year: 2026
+    publishedAt: 2026-01-24
+    link: https://unityroom.com/games/sukuttesukue
+    image: https://os-worker.unityroom.com/unityroom_production/icon/257271/icon_20260124_154643.gif?h=1769237203
+    members: [eightaid]
+  - title: カスロット
+    year: 2026
+    publishedAt: 2026-01-24
+    link: https://unityroom.com/games/shitslot
+    image: https://os-worker.unityroom.com/unityroom_production/icon/257131/icon_20260124_214006.gif?h=1769258406
+    members: [beniimo]
+  - title: トコ夢マヨイ
+    year: 2026
+    publishedAt: 2026-01-14
+    link: https://unityroom.com/games/tokoyume
+    image: https://os-worker.unityroom.com/unityroom_production/icon/253195/icon_20260114_102135.gif?h=1768353695
+    members: [beniimo]
+  - title: イオネムイズゴッド
+    year: 2026
+    publishedAt: 2026-02-11
+    link: https://unityroom.com/games/ionemuizugoddo
+    image: https://os-worker.unityroom.com/unityroom_production/icon/263696/icon_20260212_093242.gif?h=1770856362
+    members: [beniimo]
+  - title: シロワ様の寿命遊戯
+    year: 2025
+    publishedAt: 2025-12-28
+    link: https://unityroom.com/games/sirowasamaage
+    image: https://os-worker.unityroom.com/unityroom_production/icon/245457/icon_20251228_101117.gif?h=1766884277
+    members: [eightaid, beniimo]
+  - title: 悪魔の心臓のつくりかた
+    year: 2025
+    publishedAt: 2025-08-15
+    link: https://unityroom.com/games/how_to_make_devils_heart
+    image: https://os-worker.unityroom.com/unityroom_production/icon/201681/icon_20250816_121701.gif?h=1755314221
+    members: [beniimo]
+  - title: フェルと化け物の森
+    year: 2025
+    publishedAt: 2025-08-10
+    link: https://unityroom.com/games/rydie
+    image: https://os-worker.unityroom.com/unityroom_production/icon/199914/icon_20250811_124234.gif?h=1754883754
+    members: [eightaid]
+  - title: 嘘がニガテな暮多さん
+    year: 2025
+    publishedAt: 2025-07-28
+    link: https://unityroom.com/games/kuretasan
+    image: https://os-worker.unityroom.com/unityroom_production/icon/195350/icon_20250728_144854.gif?h=1753681734
+    members: [eightaid]
+  - title: ミオソティスに祝福を
+    year: 2025
+    publishedAt: 2025-07-26
+    link: https://unityroom.com/games/myosotis
+    image: https://os-worker.unityroom.com/unityroom_production/icon/194895/icon_20250726_201903.gif?h=1753528743
+    members: [beniimo]
+  - title: 代償少女
+    year: 2025
+    publishedAt: 2025-04-20
+    link: https://unityroom.com/games/lostedai
+    image: https://os-worker.unityroom.com/unityroom_production/icon/162150/icon_20250420_155940.gif?h=1745132380
+    members: [eightaid, beniimo]
+  - title: 'ぴよぴよ-卵を"かえす"落ち物パズル-'
+    year: 2024
+    link: https://unityroom.com/games/hiyocome
+    image: /icons/ぴよぴよ.png
+    members: [eightaid]
+  - title: それいけっ!!メンダコ
+    year: 2024
+    link: https://unityroom.com/games/tako
+    image: /icons/メンダコ.png
+    members: [eightaid]
+  - title: Hide for Cat -all for the best-
+    year: 2023
+    publishedAt: 2023-11-07
+    link: https://store.steampowered.com/app/2607760/Hide_for_Cat__all_for_the_best/?l=japanese
+    image: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2607760/capsule_616x353.jpg?t=1757787340
+    members: [eightaid]
+  - title: ラジアータの愛染罪
+    year: 2021
+    link: https://www.freem.ne.jp/win/game/26247
+    image: https://fpiccdn.com/26247/w500/h0/mratio/ejpg/?957f64c3d49446bcdf740c7dd519d071
+    members: [beniimo]
+---
