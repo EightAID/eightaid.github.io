@@ -58,7 +58,7 @@ const currentPath = Astro.url.pathname
       <SiteFooter settings={settings} />
     </div>
     <div class="terminal-loss terminal-loss-love" data-love-loss data-language-safe role="alertdialog" aria-modal="true" aria-label="愛を失いました" tabindex="-1" hidden>
-      <p data-love-message data-message="愛を失ったら……人は……"></p>
+      <p data-love-message data-message="愛を失ったら……人は……" data-fit-text data-fit-min="12"></p>
     </div>
     <div class="terminal-loss terminal-loss-vision" data-vision-loss data-language-safe role="alert" aria-label="視覚を失いました" hidden>
       <p>何も見えない……</p>
@@ -258,6 +258,8 @@ const currentPath = Astro.url.pathname
 
       document.fonts.ready.then(fitAllText)
       window.addEventListener('resize', queueTextFit, { passive: true })
+      const textFitObserver = new MutationObserver(queueTextFit)
+      fittedText.forEach((element) => textFitObserver.observe(element, { childList: true, characterData: true, subtree: true }))
       fitAllText()
     </script>
   </body>
