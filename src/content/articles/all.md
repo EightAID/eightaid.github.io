@@ -266,4 +266,11 @@ items:
     category: 掲載情報
     groups: [代償プロジェクト, えいとえいど参加, 紅芋けんぴ参加]
     image: https://pbs.twimg.com/media/G3_ncy8WIAATDHn.jpg?name=orig
+  - title: "「かわいそかわいい島」スタンプラリー景品『代償比べ』が公開"
+    source: 湊あおい／X
+    publishedAt: "2025-07-22T11:51:00+09:00"
+    url: https://x.com/MinatoAoi_0610/status/1947489527901393213?s=20
+    category: イベント
+    groups: [代償プロジェクト, えいとえいど参加, 紅芋けんぴ参加]
+    image: https://pbs.twimg.com/media/GwbfZm8bEAMRxBs.jpg?name=orig
 ---
