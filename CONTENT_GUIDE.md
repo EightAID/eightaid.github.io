@@ -54,7 +54,7 @@ links:
 src/assets/images/screenshots/
 ```
 
-同じファイル名で画像を上書きする場合、文言の変更は不要です。別名の画像を使う場合は `src/content/home/home.md` の `screenshots` にある `image` を変更します。
+同じファイル名で画像を上書きする場合、文言の変更は不要です。別名の画像を使う場合は `src/content/products/*.md` の `screenshots` にある `image` を変更します。`public/assets` に置いた画像は `/assets/画像名.jpg` のように指定できます。
 
 ```yaml
 - image: screenshots/daisho-screenshot-01.jpg
@@ -137,12 +137,14 @@ order: 6
   "publishedAt": "2026-07-20",
   "link": "https://unityroom.com/games/new-game",
   "image": "https://作品ページのOG画像URL",
+  "thumbnail": "/assets/指定したいサムネイル.png",
   "members": ["eightaid"]
 }
 ```
 
 - `members` には参加メンバーのファイル名を指定。複数人なら `["eightaid", "beniimo"]`
 - `image` には作品ページのOG画像URLを指定すると、リンク先のサムネイルを直接表示できます
+- 手元の素材をサムネイルにしたい場合は、その画像を `public/assets` に置き、任意項目の `thumbnail` に `/assets/画像名.png` を指定します。`thumbnail` がある作品では `image` より優先して表示されます
 - `publishedAt` は `YYYY-MM-DD` 形式。公開年と投稿日が新しい順に自動表示されるため、記載順の調整は不要です
 
 リンク先に利用できる画像がない場合は、`public/icons` などへ画像を置き、`image: /icons/画像名.png` のように指定できます。

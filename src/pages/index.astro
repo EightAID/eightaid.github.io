@@ -18,9 +18,17 @@ const history = (await getCollection('history')).sort((a, b) => a.data.order - b
 const isFourDigitYear = (value: string) => /^\d{4}$/.test(value)
 if (!settings || !home) throw new Error('Required site content is missing')
 const featuredProduct = products.find((product) => product.id === home.data.featuredProduct) ?? products[0]
+const sacrificeCards = [
+  { id: 'face', name: '顔', image: '/assets/cards/face-card.png' },
+  { id: 'language', name: '言語', image: '/assets/cards/language-card.png' },
+  { id: 'love', name: '愛', image: '/assets/cards/love-card.png' },
+  { id: 'vision', name: '視覚', image: '/assets/cards/vision-card.png' },
+  { id: 'color', name: '色覚', image: '/assets/cards/color-card.png' },
+  { id: 'intelligence', name: '知性', image: '/assets/cards/intelligence-card.png' },
+]
 ---
 
-<BaseLayout settings={settings.data} image={featuredProduct?.data.socialImage ?? '/images/daisho-main-visual.png'}>
+<BaseLayout settings={settings.data}>
   <section class="circle-hero" aria-labelledby="hero-title">
     <img class="circle-hero-bg" src={home.data.heroImage} alt="" width="1232" height="706" loading="eager" fetchpriority="high" />
     <div class="circle-hero-overlay"></div>
@@ -82,7 +90,7 @@ const featuredProduct = products.find((product) => product.id === home.data.feat
       <div class="carousel-toolbar"><div class="carousel-controls"><button type="button" data-carousel-prev aria-label="前の外部サイトへ" aria-controls="social-link-rail">←</button><button type="button" data-carousel-next aria-label="次の外部サイトへ" aria-controls="social-link-rail">→</button></div></div>
       <div id="social-link-rail" class="carousel-viewport" data-carousel-viewport tabindex="0" aria-label="他SNS・外部サイト。左右にスライドできます">
         <div class="social-link-grid" data-carousel-track>
-          {settings.data.socialLinks.map((social) => <a class="social-link-card" data-social-members={social.members.join('|')} href={social.url} target="_blank" rel="noreferrer"><div class="social-link-media"><img src={social.image} alt={`${social.name}の見出し画像`} loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><div class="social-link-copy"><p>{social.label}</p><h3>{social.name}</h3><p>{social.description}</p><span>サイトを見る ↗</span></div></a>)}
+          {settings.data.socialLinks.map((social) => <a class="social-link-card" data-social-members={social.members.join('|')} href={social.url} target="_blank" rel="noreferrer"><div class="social-link-media" data-face-target={!social.url.includes('note.com') ? '' : undefined}><img src={social.image} alt={`${social.name}の見出し画像`} loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><div class="social-link-copy"><p>{social.label}</p><h3>{social.name}</h3><p>{social.description}</p><span>サイトを見る ↗</span></div></a>)}
         </div>
       </div>
     </div>
@@ -98,11 +106,42 @@ const featuredProduct = products.find((product) => product.id === home.data.feat
         </li>
       ))}
     </ol>
+
+    <div class="sacrifice-playground" data-sacrifice-playground>
+      <header class="sacrifice-heading">
+        <p class="eyebrow">Sacrifice Experience</p>
+        <h3>なにを"代償"にする？</h3>
+        <p>カードをクリックすると、その代償がこのサイトに現れます。ページを再読み込みすると元に戻ります。</p>
+      </header>
+      <div class="sacrifice-carousel" data-sacrifice-carousel>
+        <div class="carousel-toolbar">
+          <div class="carousel-controls">
+            <button type="button" data-carousel-prev aria-label="前の代償カードへ" aria-controls="sacrifice-card-rail">←</button>
+            <button type="button" data-carousel-next aria-label="次の代償カードへ" aria-controls="sacrifice-card-rail">→</button>
+          </div>
+        </div>
+        <div id="sacrifice-card-rail" class="sacrifice-card-viewport" data-carousel-viewport tabindex="0" aria-label="代償カード。左右にスライドできます">
+          <div class="sacrifice-cards" data-carousel-track>
+            {sacrificeCards.map((card) => (
+              <button class="sacrifice-card" type="button" data-sacrifice={card.id} aria-label={`${card.name}。クリックして代償を支払う`}>
+                <span class="sacrifice-card-face">
+                  <img class="sacrifice-card-art" src={card.image} alt="" width="600" height="800" loading="lazy" />
+                  <strong class="sacrifice-card-name">{card.name}</strong>
+                  <span class="sacrifice-flame" aria-hidden="true"></span>
+                </span>
+                <span class="sacrifice-prompt">クリックして代償を支払う</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <p class="sacrifice-result" data-sacrifice-result aria-live="polite"></p>
+    </div>
   </section>
 </BaseLayout>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-horizontal-carousel], [data-article-carousel]').forEach((carousel) => {
+  document.querySelectorAll<HTMLElement>('[data-horizontal-carousel], [data-article-carousel], [data-sacrifice-carousel]').forEach((carousel) => {
     const viewport = carousel.querySelector<HTMLElement>('[data-carousel-viewport]')
     const track = viewport?.querySelector<HTMLElement>('[data-carousel-track]')
     const cards = [...(track?.children ?? [])] as HTMLElement[]
@@ -160,4 +199,46 @@ const featuredProduct = products.find((product) => product.id === home.data.feat
     })
     socialCarousel?.dispatchEvent(new Event('carousel-refresh'))
   }))
+
+  const playground = document.querySelector<HTMLElement>('[data-sacrifice-playground]')
+  const sacrificeCards = [...(playground?.querySelectorAll<HTMLButtonElement>('[data-sacrifice]') ?? [])]
+  const sacrificeResult = playground?.querySelector<HTMLElement>('[data-sacrifice-result]')
+  const sacrificeManager = (window as Window & { daishoSacrifice?: { activate: (effect: string) => void, getState: () => string[], formatText: (text: string) => string } }).daishoSacrifice
+  const paidSacrifices = new Set(sacrificeManager?.getState() ?? [])
+
+  const refreshCards = () => {
+    const terminalLoss = paidSacrifices.has('love') || paidSacrifices.has('vision')
+    sacrificeCards.forEach((card) => {
+      const paid = paidSacrifices.has(card.dataset.sacrifice ?? '')
+      card.hidden = paid
+      card.disabled = terminalLoss && !paid
+    })
+    playground?.querySelector<HTMLElement>('[data-sacrifice-carousel]')?.dispatchEvent(new Event('carousel-refresh'))
+  }
+
+  const finishSacrifice = (card: HTMLButtonElement, sacrifice: string) => {
+    paidSacrifices.add(sacrifice)
+    card.classList.add('is-gone')
+    card.hidden = true
+    playground?.querySelector<HTMLElement>('[data-sacrifice-carousel]')?.dispatchEvent(new Event('carousel-refresh'))
+    sacrificeManager?.activate(sacrifice)
+    if (sacrificeResult) {
+      const message = `${card.getAttribute('aria-label')?.split('。')[0] ?? '何か'}を支払った`
+      sacrificeResult.textContent = sacrificeManager?.formatText(message) ?? message
+    }
+    if (paidSacrifices.size === sacrificeCards.length && sacrificeResult) {
+      const message = 'すべての代償を支払った'
+      sacrificeResult.textContent = sacrificeManager?.formatText(message) ?? message
+      playground?.classList.add('is-complete')
+    }
+  }
+
+  sacrificeCards.forEach((card) => card.addEventListener('click', () => {
+    const sacrifice = card.dataset.sacrifice
+    if (!sacrifice || card.classList.contains('is-burning')) return
+    card.disabled = true
+    card.classList.add('is-burning')
+    window.setTimeout(() => finishSacrifice(card, sacrifice), 1250)
+  }))
+  refreshCards()
 </script>

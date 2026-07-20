@@ -1,7 +1,4 @@
 ---
-import { Image } from 'astro:assets'
-import { getSiteImage } from '../../lib/images'
-
 interface Shot {
   image: string
   alt: string
@@ -17,7 +14,7 @@ const { screenshots } = Astro.props
   <div class="gallery-stage" tabindex="0" aria-label="ゲーム画面。左右の矢印キーでも切り替えられます">
     {screenshots.map((shot, index) => (
       <figure class="gallery-slide" data-slide={index} hidden={index !== 0} aria-hidden={index !== 0 ? 'true' : 'false'}>
-        <Image src={getSiteImage(shot.image)} alt={shot.alt} widths={[720, 1080, 1600, 1920]} sizes="(max-width: 900px) 100vw, 75vw" />
+        <img src={shot.image} alt={shot.alt} width="1920" height="1080" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
       </figure>
     ))}
     <button class="gallery-arrow gallery-arrow-prev" type="button" data-gallery-prev aria-label="前のゲーム画面へ">←</button>

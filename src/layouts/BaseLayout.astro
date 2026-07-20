@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import SiteHeader from '../components/layout/SiteHeader.astro'
 import SiteFooter from '../components/layout/SiteFooter.astro'
+import intelligenceReadings from '../data/intelligence-readings.json'
 import '../styles/global.css'
 
 type Settings = CollectionEntry<'settings'>['data']
@@ -10,14 +11,13 @@ interface Props {
   settings: Settings
   title?: string
   description?: string
-  image?: string
   imageAlt?: string
 }
 
-const { settings, title, description = settings.description, image = '/images/daisho-main-visual.png', imageAlt = title ?? settings.name } = Astro.props
+const { settings, title, description = settings.description, imageAlt = title ?? settings.name } = Astro.props
 const pageTitle = title ? `${title} | ${settings.name}` : settings.name
 const canonical = new URL(Astro.url.pathname, Astro.site)
-const socialImage = new URL(image, Astro.site)
+const socialImage = new URL('/assets/daisho-project-social.jpg', Astro.site)
 const currentPath = Astro.url.pathname
 ---
 
@@ -37,6 +37,9 @@ const currentPath = Astro.url.pathname
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
     <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
@@ -54,6 +57,135 @@ const currentPath = Astro.url.pathname
       </main>
       <SiteFooter settings={settings} />
     </div>
+    <div class="terminal-loss terminal-loss-love" data-love-loss data-language-safe role="alertdialog" aria-modal="true" aria-label="愛を失いました" tabindex="-1" hidden>
+      <p data-love-message data-message="愛を失ったら……人は……"></p>
+    </div>
+    <div class="terminal-loss terminal-loss-vision" data-vision-loss data-language-safe role="alert" aria-label="視覚を失いました" hidden>
+      <p>何も見えない……</p>
+    </div>
+    <script is:inline define:vars={{ intelligenceReadings }}>
+      (() => {
+        const storageKey = 'daisho-sacrifice-state-v1'
+        const validEffects = new Set(['face', 'language', 'love', 'vision', 'color', 'intelligence'])
+        const navigation = performance.getEntriesByType('navigation')[0]
+        if (navigation?.type === 'reload') localStorage.removeItem(storageKey)
+
+        const readState = () => {
+          try {
+            const saved = JSON.parse(localStorage.getItem(storageKey) ?? 'null')
+            return Array.isArray(saved?.effects) ? saved.effects.filter((effect) => validEffects.has(effect)) : []
+          } catch {
+            return []
+          }
+        }
+        const activeEffects = new Set(readState())
+        const blockedParents = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'TEMPLATE'])
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            const parent = node.parentElement
+            if (!parent || blockedParents.has(parent.tagName) || parent.closest('[data-language-safe]')) return NodeFilter.FILTER_REJECT
+            return node.textContent?.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+          },
+        })
+        const textEntries = []
+        while (walker.nextNode()) {
+          const node = walker.currentNode
+          textEntries.push({ node, original: node.textContent ?? '', inArticles: Boolean(node.parentElement?.closest('#articles')) })
+        }
+
+        const shiftUnicode = (text) => Array.from(text, (character) => {
+          if (/\s/u.test(character)) return character
+          const codePoint = character.codePointAt(0)
+          return codePoint === undefined ? character : String.fromCodePoint(codePoint + 10)
+        }).join('')
+        const formatText = (text) => {
+          const reading = activeEffects.has('intelligence') ? (intelligenceReadings[text] ?? text) : text
+          return activeEffects.has('language') ? shiftUnicode(reading) : reading
+        }
+        const applyTextEffects = () => {
+          const losesIntelligence = activeEffects.has('intelligence')
+          const losesLanguage = activeEffects.has('language')
+          textEntries.forEach((entry) => {
+            const reading = losesIntelligence && !entry.inArticles ? intelligenceReadings[entry.original] : undefined
+            const base = reading ?? entry.original
+            entry.node.textContent = losesLanguage ? shiftUnicode(base) : base
+          })
+        }
+
+        const loveLoss = document.querySelector('[data-love-loss]')
+        const loveMessage = loveLoss?.querySelector('[data-love-message]')
+        const visionLoss = document.querySelector('[data-vision-loss]')
+        let loveTimer = 0
+        const showLove = (animate) => {
+          if (!loveLoss || !loveMessage) return
+          window.clearInterval(loveTimer)
+          document.documentElement.classList.add('has-lost-love')
+          document.body.classList.add('has-terminal-loss')
+          document.body.style.overflow = 'hidden'
+          loveLoss.hidden = false
+          loveLoss.classList.toggle('is-active', animate)
+          const message = loveMessage.dataset.message ?? ''
+          loveMessage.textContent = animate ? '' : message
+          if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            window.setTimeout(() => {
+              let index = 0
+              loveTimer = window.setInterval(() => {
+                loveMessage.textContent = message.slice(0, ++index)
+                if (index >= message.length) window.clearInterval(loveTimer)
+              }, 80)
+            }, 900)
+          } else if (animate) loveMessage.textContent = message
+          loveLoss.focus()
+        }
+        const showVision = () => {
+          if (!visionLoss) return
+          document.body.classList.add('has-terminal-loss')
+          visionLoss.hidden = false
+        }
+
+        const applyState = ({ animateLove = false } = {}) => {
+          const losesLove = activeEffects.has('love')
+          const losesVision = activeEffects.has('vision')
+          document.documentElement.classList.toggle('has-lost-face', activeEffects.has('face'))
+          document.documentElement.classList.toggle('has-lost-color', activeEffects.has('color'))
+          document.documentElement.classList.toggle('has-lost-love', losesLove)
+          document.body.classList.toggle('has-terminal-loss', losesLove || losesVision)
+          document.body.style.overflow = losesLove ? 'hidden' : ''
+          if (loveLoss && !losesLove) {
+            loveLoss.hidden = true
+            loveLoss.classList.remove('is-active')
+          }
+          if (visionLoss && !losesVision) visionLoss.hidden = true
+          applyTextEffects()
+          if (losesLove) showLove(animateLove)
+          else if (losesVision) showVision()
+        }
+        const save = () => localStorage.setItem(storageKey, JSON.stringify({ effects: [...activeEffects] }))
+        const notify = () => window.dispatchEvent(new CustomEvent('sacrifice:statechange', { detail: { effects: [...activeEffects] } }))
+
+        window.daishoSacrifice = {
+          activate(effect) {
+            if (!validEffects.has(effect) || activeEffects.has(effect)) return
+            activeEffects.add(effect)
+            save()
+            applyState({ animateLove: effect === 'love' })
+            notify()
+          },
+          getState() {
+            return [...activeEffects]
+          },
+          formatText,
+        }
+        window.addEventListener('storage', (event) => {
+          if (event.key !== storageKey) return
+          activeEffects.clear()
+          readState().forEach((effect) => activeEffects.add(effect))
+          applyState()
+          notify()
+        })
+        applyState()
+      })()
+    </script>
     <script>
       const fitText = (element: HTMLElement) => {
         element.style.removeProperty('font-size')

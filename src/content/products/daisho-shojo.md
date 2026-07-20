@@ -36,18 +36,30 @@ features:
     title: 美麗なグラフィック
     copy: 艶っぽく輝きのあるグラフィックとどこか闇を感じるダークメルヘンな世界観
 screenshots:
-  - image: screenshots/daisho-screenshot-03.png
-    alt: カード演出が表示された『代償少女』のゲーム画面
-    title: カードと代償
-    copy: ゲームプレイ中の画面です。
-  - image: screenshots/daisho-screenshot-02.jpg
-    alt: 静かな会話場面を描いた『代償少女』のゲーム画面
-    title: 謎の少年
-    copy: 少女が森の中で出会った少年。少女に色々教えてくれるが……？
-  - image: screenshots/daisho-screenshot-01.jpg
-    alt: 少女たちの会話と選択肢を描いた『代償少女』のゲーム画面
-    title: 【色覚】の代償
-    copy: 【色覚】を失ったことで、ゲームが白黒に変化する
+  - image: /assets/スクショ1.jpg
+    alt: 『代償少女』のゲーム画面1
+    title: ゲーム画面 1
+    copy: 『代償少女』のゲームプレイ画面です。
+  - image: /assets/スクショ2.jpg
+    alt: 『代償少女』のゲーム画面2
+    title: ゲーム画面 2
+    copy: 『代償少女』のゲームプレイ画面です。
+  - image: /assets/スクショ3.jpg
+    alt: 『代償少女』のゲーム画面3
+    title: ゲーム画面 3
+    copy: 『代償少女』のゲームプレイ画面です。
+  - image: /assets/スクショ4.jpg
+    alt: 『代償少女』のゲーム画面4
+    title: ゲーム画面 4
+    copy: 『代償少女』のゲームプレイ画面です。
+  - image: /assets/スクショ5.jpg
+    alt: 『代償少女』のゲーム画面5
+    title: ゲーム画面 5
+    copy: 『代償少女』のゲームプレイ画面です。
+  - image: /assets/スクショ6.jpg
+    alt: 『代償少女』のゲーム画面6
+    title: ゲーム画面 6
+    copy: 『代償少女』のゲームプレイ画面です。
 movie:
   youtubeId: jGvsuUJM0E0
   url: https://www.youtube.com/watch?v=jGvsuUJM0E0

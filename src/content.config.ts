@@ -143,6 +143,7 @@ const works = defineCollection({
       publishedAt: z.coerce.date().optional(),
       link: linkSchema,
       image: z.string(),
+      thumbnail: z.string().optional(),
       members: z.array(z.string()),
     })),
   }),

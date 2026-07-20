@@ -16,7 +16,7 @@ const settings = await getEntry('settings', 'site')
 if (!settings) throw new Error('Site settings are missing')
 const heroImage = getSiteImage(product.data.heroImage)
 ---
-<BaseLayout settings={settings.data} title={product.data.title} description={product.data.lead} image={product.data.socialImage}>
+<BaseLayout settings={settings.data} title={product.data.title} description={product.data.lead}>
   <section class="product-hero page-width">
     <div class="product-hero-copy"><p class="eyebrow">{product.data.eyebrow}</p><h1 data-fit-text>{product.data.title}</h1><p class="product-catch">{product.data.catchphrase}</p><p class="product-lead">{product.data.lead}</p><div class="hero-actions">{product.data.links.map((link, index) => <a class:list={['button', index === 0 ? 'primary' : 'quiet']} href={link.url} target="_blank" rel="noreferrer">{link.label} ↗</a>)}</div></div>
     <div class="product-hero-image"><Image src={heroImage} alt={product.data.heroAlt} widths={[600, 900, 1200]} sizes="(max-width: 900px) 100vw, 55vw" loading="eager" fetchpriority="high" /></div>
