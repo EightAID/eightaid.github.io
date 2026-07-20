@@ -1,0 +1,16 @@
+---
+import { getCollection, getEntry } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ProductCard from '../../components/cards/ProductCard.astro'
+
+const settings = await getEntry('settings', 'site')
+if (!settings) throw new Error('Site settings are missing')
+const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order)
+---
+
+<BaseLayout settings={settings.data} title="作品" description="代償プロジェクトが制作するゲーム作品を紹介します。" image={products[0]?.data.socialImage}>
+  <section class="product-index page-width listing-page" aria-labelledby="product-list-title">
+    <header class="compact-page-heading"><p class="eyebrow">Products</p><h1 id="product-list-title">作品一覧</h1></header>
+    <div class="product-grid">{products.map((product, index) => <ProductCard product={product} featured={index === 0} />)}</div>
+  </section>
+</BaseLayout>

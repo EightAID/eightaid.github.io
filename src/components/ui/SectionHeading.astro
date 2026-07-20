@@ -4,16 +4,17 @@ interface Props {
   eyebrow: string
   title: string
   copy?: string
+  id?: string
 }
 
-const { index, eyebrow, title, copy } = Astro.props
+const { index, eyebrow, title, copy, id } = Astro.props
 ---
 
 <header class="section-heading">
   <div class="section-number" aria-hidden="true">{index}</div>
   <div>
     <p class="eyebrow">{eyebrow}</p>
-    <h2>{title}</h2>
+    <h2 id={id}>{title}</h2>
     {copy && <p class="section-lead">{copy}</p>}
   </div>
 </header>

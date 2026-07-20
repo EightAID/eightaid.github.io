@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content'
+type Product = CollectionEntry<'products'>
+interface Props { product: Product; featured?: boolean }
+const { product, featured = false } = Astro.props
+---
+<article class:list={['product-card', { featured }]}>
+  <a href={`/products/${product.id}/`}>
+    <div class="product-card-image">
+      <img src={product.data.cardImage} alt={product.data.heroAlt} width="1232" height="706" loading={featured ? 'eager' : 'lazy'} decoding="async" />
+      <span class="status-pill">{product.data.status}</span>
+    </div>
+    <div class="product-card-copy">
+      <div><p>{product.data.genre} / {product.data.platform}</p><h3>{product.data.title}</h3><p class="product-summary">{product.data.summary}</p></div>
+      <span class="round-arrow" aria-hidden="true">→</span>
+    </div>
+  </a>
+</article>

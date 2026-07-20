@@ -1,7 +1,6 @@
 ---
 import { getCollection, getEntry } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import SectionHeading from '../../components/ui/SectionHeading.astro'
 import MemberCard from '../../components/cards/MemberCard.astro'
 
 const settings = await getEntry('settings', 'site')
@@ -10,16 +9,8 @@ const members = (await getCollection('members')).sort((a, b) => a.data.order - b
 ---
 
 <BaseLayout settings={settings.data} title="メンバー" description="代償プロジェクトの制作メンバーを紹介します。">
-  <section class="page-intro page-width">
-    <p class="eyebrow">Creators / Daishou Project</p>
-    <h1>制作メンバー</h1>
-    <p>異なる専門性を行き来しながら、遊びと物語が同じ感触を残すゲームを制作しています。</p>
-  </section>
-
-  <section class="members-index page-width section-space" aria-labelledby="member-list-title">
-    <SectionHeading index="01" eyebrow="Members" title="二人でつくる、ひとつの体験。" />
-    <div class="member-grid">
-      {members.map((member, index) => <MemberCard member={member} index={index} />)}
-    </div>
+  <section class="members-index page-width listing-page" aria-labelledby="member-list-title">
+    <header class="compact-page-heading"><p class="eyebrow">Creators</p><h1 id="member-list-title">制作メンバー</h1><p>それぞれの専門性を持ち寄って、ゲームを制作しています。</p></header>
+    <div class="member-grid">{members.map((member) => <MemberCard member={member} />)}</div>
   </section>
 </BaseLayout>

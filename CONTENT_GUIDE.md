@@ -7,10 +7,12 @@
 | 変更したい内容 | 編集するファイル |
 |---|---|
 | サークル名、共通リンク、メール | `src/content/settings/site.md` |
-| トップのコピー、作品紹介、スクリーンショット | `src/content/home/home.md` |
-| 『代償少女』の詳細、基本情報、特徴 | `src/content/special/daisho-shojo.md` |
+| トップのコピー、ロゴ、背景画像 | `src/content/home/home.md` |
+| 作品の詳細、基本情報、スクリーンショット | `src/content/products/*.md` |
 | メンバー情報 | `src/content/members/*.md` |
 | 過去作品 | `src/content/works/*.md` |
+| 掲載記事・お知らせ | `src/content/articles/*.md` |
+| 活動履歴 | `src/content/history/*.md` |
 
 `---` で囲まれた範囲だけを編集します。行頭の空白は項目のまとまりを示すため、削除しないでください。
 
@@ -20,9 +22,17 @@
 
 - `catchphrase`: メインコピー
 - `introduction`: サークル紹介
-- `gameSummary`: 作品の短い説明
-- `galleryLead`: スクリーンショット欄の説明
-- `movieLead`: PV欄の説明
+- `heroImage`: トップ背景の横長キービジュアル
+- `logoImage`: トップに重ねるサークルロゴ
+- `productsLead`、`creatorsLead`、`articlesLead`: 各セクションの説明
+
+## 新しい作品を追加する
+
+1. `src/content/products/daisho-shojo.md` を複製する
+2. ファイル名を作品URLに使う半角英数字へ変更する
+3. タイトル、説明、画像、外部リンクを差し替える
+
+`new-game.md` は `/products/new-game/` として公開されます。`cardImage` は作品一覧用、`socialImage` はSNSやチャットで共有したときのカード画像です。横長画像を指定してください。
 
 ## 共通リンクを変える
 
@@ -63,6 +73,50 @@ src/assets/images/screenshots/
 4. 名前、役割、画像、SNS、表示順を編集する
 
 例: `new-member.md` は `/members/new-member/` になります。
+
+個別プロフィールには短い紹介と過去作品一覧が表示されます。参加作品は `src/content/works/*.md` の `members` で紐づけます。
+
+## 掲載記事を追加する
+
+`src/content/articles/_template.md` を複製し、先頭の `_` を使わないファイル名に変更します。
+
+```yaml
+title: 記事タイトル
+source: 掲載媒体名
+publishedAt: 2026-07-20
+url: https://example.com/article
+category: Interview
+featured: true
+draft: false
+order: 1
+```
+
+掲載記事には画像を使いません。準備中の記事は `draft: true` にすると表示されません。
+
+## 他SNS・外部サイトを追加する
+
+`src/content/settings/site.md` の `socialLinks` に項目を追加します。noteなどのURLもここへ追加できます。
+
+```yaml
+- name: note
+  label: 制作記録
+  description: 開発中の気づきや制作記録を掲載しています。
+  url: https://note.com/アカウント名
+```
+
+## 活動履歴を追加する
+
+`src/content/history` にMarkdownを追加します。
+
+```yaml
+---
+date: "2026"
+title: 出来事のタイトル
+description: 短い説明
+link: https://example.com/
+order: 6
+---
+```
 
 ## 過去作品を追加する
 

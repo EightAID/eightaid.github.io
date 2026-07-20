@@ -1,0 +1,12 @@
+---
+import type { CollectionEntry } from 'astro:content'
+type Article = CollectionEntry<'articles'>
+interface Props { article: Article }
+const { article } = Astro.props
+const date = article.data.publishedAt.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' })
+---
+<article class="article-card">
+  <a href={article.data.url} target="_blank" rel="noreferrer">
+    <div class="article-copy"><p><span>{article.data.category}</span><time datetime={article.data.publishedAt.toISOString()}>{date}</time></p><h3>{article.data.title}</h3><span>{article.data.source} ↗</span></div>
+  </a>
+</article>

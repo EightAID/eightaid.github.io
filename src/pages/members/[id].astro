@@ -21,7 +21,7 @@ const works = (await getCollection('works'))
   .sort((a, b) => a.data.order - b.data.order)
 ---
 
-<BaseLayout settings={settings.data} title={member.data.name} description={member.data.bio}>
+<BaseLayout settings={settings.data} title={member.data.name} description={member.data.bio} imageAlt={`${member.data.name} | 代償プロジェクト`}>
   <section class="profile-hero page-width">
     <div class="profile-image">
       <Image src={portrait} alt={member.data.imageAlt} widths={[480, 720, 960]} sizes="(max-width: 800px) 100vw, 50vw" style={`object-position:${member.data.imagePosition ?? 'center'}`} />
@@ -38,21 +38,8 @@ const works = (await getCollection('works'))
     </div>
   </section>
 
-  <section class="profile-details page-width section-space">
-    <article>
-      <p class="eyebrow">01 / Profile</p>
-      <h2>つくっているもの</h2>
-      <p>{member.data.profile}</p>
-    </article>
-    <article>
-      <p class="eyebrow">02 / Current Focus</p>
-      <h2>現在の取り組み</h2>
-      <p>{member.data.currentFocus}</p>
-    </article>
-  </section>
-
   <section class="works-section page-width section-space" aria-labelledby="works-title">
-    <SectionHeading index="03" eyebrow="Selected Works" title="これまでの制作" copy={`${member.data.name}が参加した作品です。`} />
+    <SectionHeading id="works-title" index="01" eyebrow="Selected Works" title="これまでの制作" copy={`${member.data.name}が参加した作品です。`} />
     <div class="works-grid">
       {works.map((work) => <WorkCard work={work} />)}
     </div>

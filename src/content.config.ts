@@ -18,6 +18,12 @@ const settings = defineCollection({
       youtube: linkSchema,
       unityroom: linkSchema,
     }),
+    socialLinks: z.array(z.object({
+      name: z.string(),
+      label: z.string(),
+      description: z.string(),
+      url: linkSchema,
+    })),
     footerLead: z.string(),
     copyright: z.string(),
   }),
@@ -32,35 +38,53 @@ const home = defineCollection({
     introduction: z.string(),
     heroImage: z.string(),
     heroAlt: z.string(),
-    releaseLabel: z.string(),
-    gameTitle: z.string(),
-    gameSummary: z.string(),
-    galleryLead: z.string(),
-    screenshots: z.array(z.object({
-      image: z.string(),
-      alt: z.string(),
-      title: z.string(),
-      copy: z.string(),
-    })),
-    movieLead: z.string(),
+    logoImage: z.string(),
+    featuredProduct: z.string(),
+    productsLead: z.string(),
+    creatorsLead: z.string(),
+    socialsLead: z.string(),
+    articlesLead: z.string(),
+    historyLead: z.string(),
   }),
 })
 
-const special = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/special' }),
+const products = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/products' }),
   schema: z.object({
-    eyebrow: z.string(),
     title: z.string(),
+    titleEn: z.string().optional(),
+    eyebrow: z.string(),
     catchphrase: z.string(),
     lead: z.string(),
+    summary: z.string(),
+    genre: z.string(),
+    platform: z.string(),
+    status: z.string(),
     storyTitle: z.string(),
     story: z.string(),
     systemTitle: z.string(),
     system: z.string(),
     heroImage: z.string(),
     heroAlt: z.string(),
+    cardImage: z.string(),
+    socialImage: z.string(),
     facts: z.array(z.object({ label: z.string(), value: z.string() })),
     features: z.array(z.object({ number: z.string(), title: z.string(), copy: z.string() })),
+    screenshots: z.array(z.object({
+      image: z.string(),
+      alt: z.string(),
+      title: z.string(),
+      copy: z.string(),
+    })),
+    movie: z.object({
+      youtubeId: z.string(),
+      url: linkSchema,
+      title: z.string(),
+      lead: z.string(),
+    }).optional(),
+    links: z.array(z.object({ label: z.string(), url: linkSchema })),
+    featured: z.boolean().default(false),
+    order: z.number(),
   }),
 })
 
@@ -70,13 +94,36 @@ const members = defineCollection({
     name: z.string(),
     role: z.string(),
     bio: z.string(),
-    profile: z.string(),
-    currentFocus: z.string(),
     image: z.string(),
     imageAlt: z.string(),
     imagePosition: z.string().optional(),
     xUrl: linkSchema,
     portfolioUrl: linkSchema.optional(),
+    order: z.number(),
+  }),
+})
+
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    source: z.string(),
+    publishedAt: z.coerce.date(),
+    url: linkSchema,
+    category: z.string(),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+    order: z.number(),
+  }),
+})
+
+const history = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/history' }),
+  schema: z.object({
+    date: z.string(),
+    title: z.string(),
+    description: z.string(),
+    link: linkSchema.optional(),
     order: z.number(),
   }),
 })
@@ -94,4 +141,4 @@ const works = defineCollection({
   }),
 })
 
-export const collections = { settings, home, special, members, works }
+export const collections = { settings, home, products, members, works, articles, history }

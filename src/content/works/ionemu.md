@@ -1,6 +1,6 @@
 ---
 title: イオネムイズゴッド
-year: 2025
+year: 2026
 link: https://unityroom.com/games/ionemuizugoddo
 image: /icons/イオネム.png
 imageAlt: 『イオネムイズゴッド』のアイコン

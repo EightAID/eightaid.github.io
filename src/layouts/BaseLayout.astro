@@ -11,9 +11,10 @@ interface Props {
   title?: string
   description?: string
   image?: string
+  imageAlt?: string
 }
 
-const { settings, title, description = settings.description, image = '/og.png' } = Astro.props
+const { settings, title, description = settings.description, image = '/images/daisho-main-visual.png', imageAlt = title ?? settings.name } = Astro.props
 const pageTitle = title ? `${title} | ${settings.name}` : settings.name
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const socialImage = new URL(image, Astro.site)
@@ -36,10 +37,12 @@ const currentPath = Astro.url.pathname
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
     <title>{pageTitle}</title>
   </head>
   <body>
