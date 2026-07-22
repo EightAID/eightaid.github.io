@@ -1,5 +1,12 @@
 ---
 items:
+  - title: 'カードのコストは少女"自身"。『代償少女』はいったいどんなゲームなのか？'
+    source: GameWith INDIE
+    publishedAt: "2026-07-13T17:08:59+09:00"
+    url: https://indie.gamewith.jp/games/compensated-girl/devlog/bVYE6olDIvOi
+    category: 開発ログ
+    groups: [代償プロジェクト, えいとえいど参加, 紅芋けんぴ参加]
+    image: https://indie-storage.media.gw-usercontent.com/games/Gd_LkJf8EY8r/cover/QUduOYi0YQ3CYKrD.jpg
   - title: 次に失うのはどの感覚？ 閲覧数27万回以上を達成した人気フリゲ「代償少女」，ローグライクデッキ構築要素をプラスして登場［BitSummit］
     source: 4Gamer.net
     publishedAt: "2026-05-23T14:59:00+09:00"

@@ -20,6 +20,12 @@ links:
   youtube: https://www.youtube.com/watch?v=jGvsuUJM0E0
   unityroom: https://unityroom.com/games/lostedai
 socialLinks:
+  - name: GameWith INDIE（えいとえいど）
+    label: 開発者プロフィール
+    description: 『代償少女』の開発ログや、えいとえいどの活動情報を掲載しています。
+    url: https://indie.gamewith.jp/users/eight-aid
+    image: https://indie-storage.media.gw-usercontent.com/user-avatars/CIyEU8G6_5VX.jpg
+    members: [えいとえいど]
   - name: note（えいとえいど）
     label: 制作記録
     description: ゲーム開発の記録や、作品にまつわる記事を公開しています。

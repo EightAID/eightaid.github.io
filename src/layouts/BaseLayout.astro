@@ -67,8 +67,8 @@ const currentPath = Astro.url.pathname
       (() => {
         const storageKey = 'daisho-sacrifice-state-v1'
         const validEffects = new Set(['face', 'name', 'birthday', 'language', 'love', 'vision', 'color', 'intelligence'])
-        const personalNames = ['えいとえいど', '紅芋けんぴ']
-        const birthdays = ['2月24日', '9月3日']
+        const personalNames = ['えいとえいど', '紅芋けんぴ', 'EigHt']
+        const birthdays = ['2月24日', '9月3日', '5月16日']
         const navigation = performance.getEntriesByType('navigation')[0]
         if (navigation?.type === 'reload') localStorage.removeItem(storageKey)
 

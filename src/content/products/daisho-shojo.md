@@ -65,6 +65,21 @@ movie:
   url: https://www.youtube.com/watch?v=jGvsuUJM0E0
   title: 正式発表PV
   lead: 『代償少女』の世界観とゲームプレイを紹介する正式発表PV。
+music:
+  composer: EigHt
+  composerImage: /assets/member-eight.png
+  composerBirthday: 5月16日
+  composerBloodType: O型
+  composerZodiac: おうし座
+  composerUrl: https://www.youtube.com/@eightchann
+  composerXUrl: https://x.com/eightchan_
+  composerBoothUrl: https://bgm-cathedral.booth.pm
+  profile: ペンギン大好き作曲家。毎日ブルーベリー食べてる。
+  youtubeId: m7WHaK18MIE
+  url: https://www.youtube.com/watch?v=m7WHaK18MIE
+  title: 鏡の国のアリス症候群
+  lead: 製品版の世界を演出する楽曲です。
+  songLead: unityroom版『代償少女』の戦闘楽曲として使用しています。
 links:
   - label: Steamで見る
     url: https://store.steampowered.com/app/3839720/_/?l=japanese
