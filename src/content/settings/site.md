@@ -9,7 +9,7 @@ navigation:
   - label: 作品
     href: /products/
   - label: メンバー
-    href: /members/
+    href: /#creators
   - label: 掲載記事
     href: /#articles
   - label: 他SNS

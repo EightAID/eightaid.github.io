@@ -8,6 +8,13 @@ summary: 少女の大切なものを代償にする、喪失系カードバト�
 genre: 喪失系カードバトルADV
 platform: Steam
 status: 制作中
+publisher:
+  name: 講談社ゲームラボ
+  shortName: 講談社
+  url: https://creatorslab.kodansha.co.jp/game/
+  logo: /images/kodansha-game-lab-logo.png
+  catchphrase: 出版社ならではのゲームを「世界」に届けます！
+  description: 少人数でゲームを制作するクリエイターを編集者が支え、作品を世界へ届ける講談社のゲームレーベルです。
 storyTitle: 怪しげな森で目覚めた少女
 story: 「おはよう、赤月あいちゃん__」少女は怪しげな森の中、不思議な少年と出会いました。森には怖い化け物が歩いており、大変危険です。少女の手には見覚えのない魔導書と不思議なカード。「そのカードは、キミ自身の力であり＿＿代償だよ」少女は、旅路の中で何を残し、何を失い、何を得るのか。
 systemTitle: デッキ＝少女自身
