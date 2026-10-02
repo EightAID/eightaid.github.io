@@ -458,3 +458,28 @@ button, summary { font: inherit; }
   .work-copy { min-height: 8rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .sacrifice-flame { display: none; } }
+
+/* Compact external links shared by member cards and profile pages. */
+.profile-social-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+.profile-social-links a { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.25rem; max-width: 100%; padding: .4rem .7rem; border: 1px solid var(--line); border-radius: .5rem; background: rgba(255,255,255,.035); color: var(--paper-muted); font-size: .72rem; line-height: 1.4; transition: color .2s, border-color .2s, background .2s; }
+.profile-social-links a[data-service-host] { --service-color: #bcb1b5; --service-bg: #242126; color: #fff; border-color: color-mix(in srgb, var(--service-color) 65%, transparent); background: var(--service-bg); }
+.profile-social-links a[data-service-host="x.com"] { --service-color: #a3a3a3; --service-bg: #080808; }
+.profile-social-links a[data-service-host="note.com"] { --service-color: #41c9b4; --service-bg: #176451; }
+.profile-social-links a[data-service-host="www.youtube.com"] { --service-color: #ff4545; --service-bg: #b50916; }
+.profile-social-links a[data-service-host="indie.gamewith.jp"] { --service-color: #48d69b; --service-bg: #126641; }
+.profile-social-links a[data-service-host="github.com"] { --service-color: #9da7b3; --service-bg: #24292f; }
+.profile-social-links a[data-service-host="unityroom.com"] { --service-color: #42b5ff; --service-bg: #11568c; }
+.profile-social-links a[data-service-host$=".booth.pm"] { --service-color: #fc7187; --service-bg: #ad2942; }
+.profile-social-links a[data-service-host]:hover { border-color: var(--service-color); background: color-mix(in srgb, var(--service-bg) 78%, var(--service-color)); }
+.profile-social-links a:focus-visible { outline: 2px solid var(--service-color, var(--paper)); outline-offset: 3px; }
+.service-icon { display: inline-block; flex: 0 0 auto; vertical-align: middle; }
+.member-card > .profile-social-links { margin: 0; padding: 1rem 1.25rem; border-top: 1px solid var(--line); }
+.activity-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; color: var(--paper-muted); font-size: .72rem; }
+.activity-meta > span { display: inline-flex; align-items: center; gap: .45rem; color: var(--crimson-bright); }
+.activity-placeholder { display: flex; height: 100%; align-items: center; justify-content: center; gap: 1rem; font-size: 2rem; color: var(--paper-muted); }
+.activity-placeholder .service-icon { width: 3rem; height: 3rem; }
+.activity-empty { padding: 2rem; border: 1px solid var(--line); border-radius: var(--radius); color: var(--paper-muted); }
+@media (max-width: 600px) {
+  .member-card > .profile-social-links { padding: .75rem; gap: .4rem; }
+  .member-card .profile-social-links a { font-size: .65rem; padding: .4rem .5rem; }
+}

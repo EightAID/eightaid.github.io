@@ -18,14 +18,6 @@ const settings = defineCollection({
       youtube: linkSchema,
       unityroom: linkSchema,
     }),
-    socialLinks: z.array(z.object({
-      name: z.string(),
-      label: z.string(),
-      description: z.string(),
-      url: linkSchema,
-      image: z.string(),
-      members: z.array(z.enum(['えいとえいど', '紅芋けんぴ'])).min(1),
-    })),
     footerLead: z.string(),
     copyright: z.string(),
   }),
@@ -126,8 +118,7 @@ const members = defineCollection({
     image: z.string(),
     imageAlt: z.string(),
     imagePosition: z.string().optional(),
-    xUrl: linkSchema,
-    portfolioUrl: linkSchema.optional(),
+    socialLinks: z.array(z.object({ name: z.string(), url: linkSchema })).min(1),
     order: z.number(),
   }),
 })
@@ -176,4 +167,19 @@ const works = defineCollection({
   }),
 })
 
-export const collections = { settings, home, products, members, works, articles, history }
+const activities = defineCollection({
+  loader: glob({ pattern: 'all.json', base: './src/content/activities' }),
+  schema: z.object({
+    items: z.array(z.object({
+      title: z.string(),
+      source: z.string(),
+      publishedAt: z.coerce.date(),
+      url: linkSchema,
+      image: z.string().optional(),
+      members: z.array(z.enum(['えいとえいど', '紅芋けんぴ'])).min(1),
+      draft: z.boolean().default(false),
+    })),
+  }),
+})
+
+export const collections = { settings, home, products, members, works, articles, activities, history }

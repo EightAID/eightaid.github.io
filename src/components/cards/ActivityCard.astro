@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import ServiceIcon from '../ui/ServiceIcon.astro'
+interface Props { activity: CollectionEntry<'activities'>['data']['items'][number] }
+const { activity } = Astro.props
+---
+<a class="social-link-card" data-social-members={activity.members.join('|')} href={activity.url} target="_blank" rel="noreferrer">
+  <div class="social-link-media">
+    {activity.image ? <img src={activity.image} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /> : <span class="activity-placeholder"><ServiceIcon url={activity.url}/>{activity.source}</span>}
+  </div>
+  <div class="social-link-copy">
+    <div class="activity-meta"><span><ServiceIcon url={activity.url}/>{activity.source}</span><time datetime={activity.publishedAt.toISOString()}>{activity.publishedAt.toLocaleDateString('ja-JP', { timeZone: 'Asia/Tokyo' })}</time></div>
+    <h3>{activity.title}</h3>
+    <p>{activity.members.join('・')}</p>
+    <span>記事・投稿を見る ↗</span>
+  </div>
+</a>

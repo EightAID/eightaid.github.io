@@ -1,4 +1,5 @@
 ---
+import ProfileLinks from '../ui/ProfileLinks.astro'
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import { getSiteImage } from '../../lib/images'
@@ -21,4 +22,5 @@ const portrait = getSiteImage(member.data.image)
       <span>Profile →</span>
     </div>
   </a>
+  <ProfileLinks member={member} />
 </article>

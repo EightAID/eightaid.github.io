@@ -7,7 +7,12 @@ bloodType: A型
 zodiac: おとめ座
 image: members/beniimo.png
 imageAlt: 紅芋けんぴのプロフィール画像
-xUrl: https://x.com/beniimo_game
-portfolioUrl: https://unityroom.com/users/beniimokenpi
+socialLinks:
+  - name: X
+    url: https://x.com/beniimo_game
+  - name: BOOTH【天獄】
+    url: https://beniimogame.booth.pm/
+  - name: unityroom
+    url: https://unityroom.com/users/beniimokenpi
 order: 2
 ---

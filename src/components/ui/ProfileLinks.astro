@@ -1,0 +1,9 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import ServiceIcon from './ServiceIcon.astro'
+interface Props { member: CollectionEntry<'members'> }
+const { member } = Astro.props
+---
+<nav class="profile-social-links" aria-label={`${member.data.name}のSNS・外部サイト`}>
+  {member.data.socialLinks.map((link) => <a data-service-host={new URL(link.url).hostname} href={link.url} target="_blank" rel="noreferrer"><ServiceIcon url={link.url}/><span>{link.name}</span><span aria-hidden="true">↗</span></a>)}
+</nav>

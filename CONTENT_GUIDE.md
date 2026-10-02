@@ -11,6 +11,7 @@
 | 作品の詳細、基本情報、スクリーンショット | `src/content/products/*.md` |
 | メンバー情報 | `src/content/members/*.md` |
 | 過去作品 | `src/content/works/all.json` |
+| 最近の活動 | `src/content/activities/all.json` |
 | 掲載記事・お知らせ | `src/content/articles/all.md` |
 | 活動履歴 | `src/content/history/*.md` |
 
@@ -97,20 +98,33 @@ src/assets/images/screenshots/
 
 一覧は `publishedAt` の新しい順に自動で並ぶため、`order` は不要です。同じ公開日時の記事は `all.md` に書かれている順に表示されます。
 
-## 他SNS・外部サイトを追加する
+## プロフィールのSNS・外部サイトを追加する
 
-`src/content/settings/site.md` の `socialLinks` に項目を追加します。noteなどのURLもここへ追加できます。
+各メンバーの `src/content/members/*.md` にある `socialLinks` を編集します。トップのメンバーカードと個別プロフィールにアイコン付きボタンとして表示されます。
 
 ```yaml
-- name: note
-  label: 制作記録
-  description: 開発中の気づきや制作記録を掲載しています。
-  url: https://note.com/アカウント名
-  image: https://example.com/channel-image.jpg
-  members: [えいとえいど]
+socialLinks:
+  - name: note
+    url: https://note.com/aidunity
 ```
 
-`members` は `[えいとえいど]` または `[紅芋けんぴ]` を指定します。両方に表示するリンクは `[えいとえいど, 紅芋けんぴ]` と記載します。
+## 最近の活動を追加する
+
+`src/content/activities/all.json` の `items` に追加します。アカウントのトップではなく個別の記事・投稿・動画のURLを指定してください。掲載記事とは別に管理します。
+
+```json
+{
+  "title": "活動のタイトル",
+  "source": "note",
+  "publishedAt": "2026-10-02T18:00:00+09:00",
+  "url": "https://note.com/aidunity/n/記事ID",
+  "image": "/assets/活動画像.jpg",
+  "members": ["えいとえいど"],
+  "draft": false
+}
+```
+
+新しい日付順に表示します。`members` は「えいとえいど」「紅芋けんぴ」から指定でき、両名の指定も可能です。`image` は省略可能、`draft: true` は非表示です。未登録のメンバーで絞り込むと準備中の表示になります。RSSの自動更新ではなく、このファイルへの追加で更新します。
 
 ## 活動履歴を追加する
 

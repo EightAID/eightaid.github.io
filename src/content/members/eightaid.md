@@ -8,7 +8,18 @@ zodiac: うお座
 image: members/eightaid.png
 imageAlt: えいとえいどのプロフィール画像
 imagePosition: center 28%
-xUrl: https://x.com/AIDunity
-portfolioUrl: https://unityroom.com/users/aidunity
+socialLinks:
+  - name: X
+    url: https://x.com/AIDunity
+  - name: note
+    url: https://note.com/aidunity
+  - name: YouTube
+    url: https://www.youtube.com/@EightAIDgames
+  - name: GameWith INDIE
+    url: https://indie.gamewith.jp/users/eight-aid
+  - name: GitHub
+    url: https://github.com/EightAID
+  - name: unityroom
+    url: https://unityroom.com/users/aidunity
 order: 1
 ---
