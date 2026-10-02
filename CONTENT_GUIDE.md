@@ -128,7 +128,7 @@ socialLinks:
 
 GitHub Actionsは6時間ごと、および公開時に再取得します。取得失敗時は前回のキャッシュを残します。取得結果・失敗理由はActionsの `activity-source-status` アーティファクトで確認できます。
 
-対象はプロフィールの `socialLinks` です。note・YouTube・GitHubはRSS/Atom、GameWithは開発ログ、unityroomは作品の投稿日を取得します。BOOTHはアクセス可能で公開日が確認できる商品のみ対象です。XはリポジトリのActions Secretに `X_BEARER_TOKEN` を設定した場合に公式APIで取得します（利用可能なAPI契約が必要）。認証情報はファイルやブラウザに含めないでください。取得できないサービスの日時を推測して表示することはありません。
+対象はプロフィールの `socialLinks` です（GitHubは活動の取得・表示から除外し、プロフィールのボタンのみ残します）。note・YouTubeはRSS/Atom、GameWithは開発ログ、unityroomは作品の投稿日を取得します。BOOTHはアクセス可能で公開日が確認できる商品のみ対象です。XはリポジトリのActions Secretに `X_BEARER_TOKEN` を設定した場合に公式APIで取得します（利用可能なAPI契約が必要）。認証情報はファイルやブラウザに含めないでください。取得できないサービスの日時を推測して表示することはありません。
 
 ## 活動履歴を追加する
 

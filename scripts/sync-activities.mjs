@@ -17,6 +17,7 @@ async function request(url, json = false, headers = {}) {
 export function normalize(items) {
   const merged = new Map()
   for (const item of items) {
+    if (safeUrl(item.url) && new URL(item.url).hostname === 'github.com') continue
     if (!item.title || !safeUrl(item.url) || !Number.isFinite(Date.parse(item.publishedAt)) || !item.members?.length) continue
     const url = new URL(item.url); url.hash = ''
     const key = url.href
@@ -68,7 +69,6 @@ async function pageItems(profile, kind) {
 async function getItems(link) {
   const url = new URL(link.url)
   if (url.hostname === 'note.com') return feed(`${link.url.replace(/\/$/, '')}/rss`)
-  if (url.hostname === 'github.com') return feed(`${link.url.replace(/\/$/, '')}.atom`)
   if (url.hostname === 'www.youtube.com') {
     const $ = load(await request(link.url))
     const rss = $('link[type="application/rss+xml"]').attr('href')
@@ -101,6 +101,7 @@ export async function sync() {
     const text = await readFile(`src/content/members/${file}`, 'utf8')
     const member = parse(text.split('---')[1])
     for (const link of member.socialLinks) {
+      if (new URL(link.url).hostname === 'github.com') continue
       try {
         const items = await getItems(link)
         collected.push(...items.map(item => ({ ...item, source: link.name, members: [member.name], draft: false })))
