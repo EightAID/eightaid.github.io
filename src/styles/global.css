@@ -483,3 +483,28 @@ button, summary { font: inherit; }
   .member-card > .profile-social-links { padding: .75rem; gap: .4rem; }
   .member-card .profile-social-links a { font-size: .65rem; padding: .4rem .5rem; }
 }
+
+/* A short news strip between the hero and the first numbered section. */
+.activity-banner { margin-top: 2rem; padding-block: 1.25rem; border-block: 1px solid var(--line); }
+.activity-banner .compact-section-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: .75rem; margin-bottom: .7rem; }
+.activity-banner .compact-section-heading .eyebrow { margin: 0; font-size: .6rem; }
+.activity-banner .compact-section-heading h2 { margin: 0; font-size: 1.25rem; }
+.activity-banner .article-filters { margin: 0 0 .65rem; gap: .4rem; }
+.activity-banner .article-filters button { padding: .3rem .7rem; min-height: 1.9rem; font-size: .65rem; }
+.activity-banner .carousel-toolbar { position: absolute; inset: auto 0 auto auto; top: -2.6rem; }
+.activity-banner .carousel-controls { position: static; transform: none; justify-content: flex-end; gap: .4rem; }
+.activity-banner .carousel-controls button { width: 1.9rem; height: 1.9rem; }
+.activity-banner .social-link-card { flex: 0 0 min(27rem, 86vw); flex-direction: row; height: 7.5rem; border-radius: .7rem; }
+.activity-banner .social-link-media { width: 7rem; flex: 0 0 7rem; aspect-ratio: auto; }
+.activity-banner .social-link-copy { min-width: 0; min-height: 0; padding: .7rem .85rem; justify-content: center; }
+.activity-banner .social-link-copy h3 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; margin: .35rem 0; font-family: var(--sans); font-size: .85rem; line-height: 1.5; font-weight: 700; }
+.activity-banner .social-link-copy > p { font-size: .6rem; }
+.activity-banner .social-link-copy > span { display: none; }
+.activity-banner .activity-meta { font-size: .6rem; gap: .3rem; }
+.activity-banner .activity-placeholder { flex-direction: column; gap: .4rem; font-size: .7rem; }
+.activity-banner .activity-placeholder .service-icon { width: 1.5rem; height: 1.5rem; }
+.activity-banner .carousel-viewport { padding-bottom: .3rem; }
+@media (max-width: 420px) {
+  .activity-banner .social-link-media { width: 5rem; flex-basis: 5rem; }
+  .activity-banner .article-filters { padding-right: 4.5rem; }
+}

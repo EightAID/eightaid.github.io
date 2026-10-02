@@ -6,10 +6,17 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "sync:activities": "node scripts/sync-activities.mjs",
+    "test:activities": "node --test scripts/sync-activities.test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.18.2"
+  },
+  "devDependencies": {
+    "cheerio": "^1.2.0",
+    "fast-xml-parser": "^5.11.2",
+    "yaml": "^2.9.1"
   }
 }

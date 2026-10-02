@@ -19,6 +19,7 @@ const activitiesCatalog = await getEntry('activities', 'all')
 const activities = (activitiesCatalog?.data.items ?? [])
   .filter((activity) => !activity.draft)
   .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())
+  .slice(0, 20)
 const history = (await getCollection('history')).sort((a, b) => a.data.order - b.data.order)
 const isFourDigitYear = (value: string) => /^\d{4}$/.test(value)
 if (!settings || !home) throw new Error('Required site content is missing')
@@ -46,6 +47,24 @@ const sacrificeCards = [
       <p class="hero-introduction">{home.data.introduction}</p>
       <div class="hero-actions"><a class="button primary" href="/products/">作品を見る →</a><a class="button glass" href="#creators">メンバーを見る ↓</a></div>
       {featuredProduct && <a class="hero-featured" href={`/products/${featuredProduct.id}/`}><span>Featured Product</span><strong>{featuredProduct.data.title}</strong><em>{featuredProduct.data.status} →</em></a>}
+    </div>
+  </section>
+
+  <section id="socials" class="socials-section activity-banner page-width" aria-labelledby="socials-title">
+    <header class="compact-section-heading"><p class="eyebrow">Recent Activity</p><h2 id="socials-title">最近の活動</h2></header>
+    <nav class="article-filters" aria-label="最近の活動の絞り込み">
+      <button type="button" data-social-filter="all" aria-pressed="true">すべて</button>
+      <button type="button" data-social-filter="えいとえいど" aria-pressed="false">えいとえいど</button>
+      <button type="button" data-social-filter="紅芋けんぴ" aria-pressed="false">紅芋けんぴ</button>
+    </nav>
+    <p class="activity-empty" data-activity-empty aria-live="polite" hidden={activities.length > 0}>このメンバーの活動は準備中です。</p>
+    <div class="social-carousel" data-horizontal-carousel hidden={activities.length === 0}>
+      <div class="carousel-toolbar"><div class="carousel-controls"><button type="button" data-carousel-prev aria-label="前の活動へ" aria-controls="social-link-rail">←</button><button type="button" data-carousel-next aria-label="次の活動へ" aria-controls="social-link-rail">→</button></div></div>
+      <div id="social-link-rail" class="carousel-viewport" data-carousel-viewport tabindex="0" aria-label="最近の活動。左右にスライドできます">
+        <div class="social-link-grid" data-carousel-track>
+          {activities.map((activity) => <ActivityCard activity={activity} />)}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -83,24 +102,6 @@ const sacrificeCards = [
       </div>
       </>
     ) : <div class="article-empty page-width"><p class="eyebrow">Coming Soon</p><h3>掲載情報を準備しています。</h3><p>記事名・掲載元・URLを追加すると、ここに一覧表示されます。</p></div>}
-  </section>
-
-  <section id="socials" class="socials-section page-width section-space" aria-labelledby="socials-title">
-    <header class="compact-section-heading"><p class="eyebrow">Recent Activity</p><h2 id="socials-title">最近の活動</h2><p>{home.data.socialsLead}</p></header>
-    <nav class="article-filters" aria-label="最近の活動の絞り込み">
-      <button type="button" data-social-filter="all" aria-pressed="true">すべて</button>
-      <button type="button" data-social-filter="えいとえいど" aria-pressed="false">えいとえいど</button>
-      <button type="button" data-social-filter="紅芋けんぴ" aria-pressed="false">紅芋けんぴ</button>
-    </nav>
-    <p class="activity-empty" data-activity-empty aria-live="polite" hidden={activities.length > 0}>このメンバーの活動は準備中です。</p>
-    <div class="social-carousel" data-horizontal-carousel hidden={activities.length === 0}>
-      <div class="carousel-toolbar"><div class="carousel-controls"><button type="button" data-carousel-prev aria-label="前の活動へ" aria-controls="social-link-rail">←</button><button type="button" data-carousel-next aria-label="次の活動へ" aria-controls="social-link-rail">→</button></div></div>
-      <div id="social-link-rail" class="carousel-viewport" data-carousel-viewport tabindex="0" aria-label="最近の活動。左右にスライドできます">
-        <div class="social-link-grid" data-carousel-track>
-          {activities.map((activity) => <ActivityCard activity={activity} />)}
-        </div>
-      </div>
-    </div>
   </section>
 
   <section id="history" class="history-section page-width section-space" aria-labelledby="history-title">
